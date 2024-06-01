@@ -1,0 +1,778 @@
+﻿@import url(WkstVariables.css);
+
+:root.Wkst {font-size:62.5%;}
+:root.titanDisplay .Wkst {font-size:initial;}
+:root.Wkst body,
+:root.titanDisplay .Wkst {font-family:var(--fontfamily-primary); background-color:var(--color-light); color:var(--color-text); font-size:1.3rem; line-height:1.4;}
+
+.Wkst svg.icon {fill:currentColor;}
+.Wkst .about {font-size:1.0rem; color:var(--color-dark);}
+
+.Wkst input,
+.Wkst textarea,
+.Wkst select,
+.Wkst label.button,
+.Wkst button,
+.Wkst input[type="file"] + span.input {font-family:var(--fontfamily-primary); font-size:1.4rem;}
+
+.Wkst input[type="text"],
+.Wkst input[type="number"],
+.Wkst input[type="date"],
+.Wkst input[type="time"],
+.Wkst input[type="password"],
+.Wkst input[type="email"],
+.Wkst input[type="tel"],
+.Wkst input[type="file"] + span.input,
+.Field.CmsCKEditor .body div[data-ui="Popup"] {border-radius:var(--dim-border-radius); border:solid 1px var(--color-dark); background-color:var(--color-white);}
+
+.Wkst button.link {border:none; border-radius:0;}
+
+.Wkst input[type="submit"].wkstButton,
+.Wkst input[type="button"].wkstButton,
+.Wkst button.wkstButton,
+.Wkst label.menuButton,
+.Wkst .Field .body label.menuButton {background:var(--color-primary-light); color:var(--color-white); border-radius:25px; border:0;}
+
+.Wkst input[type="submit"].link,
+.Wkst input[type="button"].link,
+.Wkst button.link {background-color:transparent; color:var(--color-primary-light);}
+.Wkst input[type="submit"].link:hover,
+.Wkst input[type="button"].link:hover,
+.Wkst button.link:hover {text-decoration:underline; } 
+
+.Wkst button.link.selected {text-decoration:underline; font-weight:600;}
+
+.Wkst input[type="submit"].link.disabled,
+.Wkst input[type="button"].link.disabled,
+.Wkst button.link.disabled {color:var(--color-dark-disabled); background-color:transparent;}
+.Wkst input[type="submit"].link.disabled:hover,
+.Wkst input[type="button"].link.disabled:hover,
+.Wkst button.link.disabled:hover {text-decoration:none; color:var(--color-dark-disabled); background-color:transparent;} 
+
+.Wkst input[type="submit"].wkstButton.disabled,
+.Wkst input[type="button"].wkstButton.disabled,
+.Wkst button.wkstButton.disabled,
+.Wkst button.wkstButton:disabled,
+.Wkst label.menuButton.disabled,
+.Wkst .Field .body label.menuButton.disabled {background-color:var(--color-medium); color:var(--color-dark);}
+
+.Wkst input[type="submit"].wkstButton:not(.disabled):focus,
+.Wkst input[type="button"].wkstButton:not(.disabled):focus,
+.Wkst button.wkstButton:not(.disabled):focus,
+.Wkst button.wkstButton:not(.disabled).withMenu:focus ~ label.menuButton:not(.disabled) {box-shadow:0px 0px 0px 2px var(--color-medium);}
+.DialogEditor button.wkstButton:not(.disabled):focus {box-shadow:0px 0px 0px 2px var(--color-primary-medium);}
+
+.Wkst button.icon {border:none; background:transparent; color:var(--color-primary-light);}
+.Wkst button.icon:hover,
+.Wkst button.icon:focus {color:var(--color-primary);}
+.Wkst button.icon[disabled],
+.Wkst button.icon.disabled {color:var(--color-primary-dark-disabled);}
+.Wkst button.icon svg.icon.uploading {animation-name:uploadProgress; animation-duration:1.5s; animation-iteration-count:infinite; animation-timing-function:ease-in-out; animation-direction:normal; animation-play-state:running;}
+
+.Wkst .WkstDialog div.login-form {background-color:var(--color-light); border:1px solid var(--color-dark-border); border-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 2px;}
+
+.Wkst .login-form input + label {font-style:italic; font-size:1.4rem; color:var(--color-dark); background-color:transparent;}
+
+.Wkst .login-form input:focus {outline-color:var(--color-primary); border-color:var(--color-primary);}
+.Wkst .login-form input:focus + label,
+.Wkst .login-form input:valid + label {color:var(--color-primary); background:linear-gradient(to bottom, var(--color-light) 62%,transparent 68%);}
+
+.Wkst .login-form input.input-validation-error {outline-color:var(--color-error); border-color:var(--color-error);}
+.Wkst .login-form .field-validation-error {border:1px solid var(--color-error); border-left-width:4px; background-color:var(--color-white);}
+.Wkst .login-form .field-validation-error:after {content:""; border:8px solid var(--color-error); border-top-color:transparent; border-left-color:transparent; border-bottom-color:transparent; border-radius:var(--dim-border-radius);}
+.Wkst .login-form .validation-summary-errors {border:1px solid var(--color-error); background-color:var(--color-white); border-radius:var(--dim-border-radius);}
+
+.Wkst a {color: var(--color-primary-light);}
+
+.Wkst h1, .Wkst .heading1,
+.Wkst h2, .Wkst .heading2,
+.Wkst h3, .Wkst .heading3,
+.Wkst h4, .Wkst .heading4,
+.Wkst h5, .Wkst .heading5,
+.Wkst h6, .Wkst .heading6 {display:block; margin:0; font-family:var(--fontfamily-primary); color:var(--color-text); font-size:1.3rem; line-height:1.4; text-transform:none; font-weight:600;}
+.Wkst h1, .Wkst .heading1 {font-size:2.2rem; margin-bottom:1.9rem;}
+.Wkst h2, .Wkst .heading2 {font-size:2.0rem; margin-bottom:1.6rem;}
+.Wkst h3, .Wkst .heading3 {font-size:1.5rem; margin-bottom:1.3rem;}
+.Wkst h4, .Wkst .heading4 {font-size:1.4rem; margin-bottom:1.1rem;}
+.Wkst h5, .Wkst .heading5 {font-size:1.3rem; margin-bottom:0.9rem;}
+.Wkst h6, .Wkst .heading6 {font-size:1.1rem; margin-bottom:0.7rem;}
+
+.Wkst .WkstHeader {background-color:var(--color-primary-medium); color:var(--color-light);}
+.Wkst .WkstSearch {background-color:var(--color-light); border:solid 1px var(--color-border-light); border-left:none; border-right:none; }
+.Wkst .WkstMain,
+.Wkst .WkstTree,
+.Wkst .WkstContent {background-color:var(--color-lightest);}
+.Wkst .WkstResizeH {background-color:var(--color-border-light); border:none; border-right:solid 10px var(--color-lightest);}
+.Wkst .WkstResizeH:hover {border-width:8px;}
+
+.Wkst .fuzzyCover {background-color:var(--color-black-shadow);}
+
+.Wkst input[type="checkbox"].menuOpener:checked ~ label {background-color:var(--color-tab-menu);}
+.Wkst input[type="checkbox"].menuOpener:checked ~ label.disabled {background-color:var(--color-primary-medium-trans);}
+.Wkst input[type="checkbox"].menuOpener:checked ~ label.fuzzyCover {background-color:transparent;}
+
+.Wkst .borderArrowUp:before {content:""; border-style:solid; border-color:var(--color-dark-border); border-width:7px 14px; border-top-color:transparent; border-right-color:transparent; border-left-color:transparent; border-radius:var(--dim-border-radius);}
+.Wkst .borderArrowUp:after {content:""; border-style:solid; border-color:var(--color-white); border-width:6px 12px; border-top-color:transparent; border-right-color:transparent; border-left-color:transparent; border-radius:var(--dim-border-radius);}
+
+.Wkst .caretDown:after {content:""; border:6px solid var(--color-light); border-bottom-color:transparent; border-right-color:transparent; border-left-color:transparent; border-radius:var(--dim-border-radius);}
+.Wkst .caretDown.disabled:after {border-top-color:var(--color-primary-medium);}
+
+.WkstHeader .menu {background-color:var(--color-tab-menu);}
+.WkstHeader .menu ul li {background-color:var(--color-primary-medium); border:solid 2px var(--color-tab-menu); border-radius:var(--dim-border-radius);}
+.WkstHeader a {color: var(--color-light); text-decoration:none;}
+.WkstHeader a:hover {text-decoration:underline;}
+
+.AppsMenu .menu {border-bottom-right-radius:var(--dim-border-radius);}
+.AppsMenu .menu li[data-href] {color:var(--color-light); text-decoration:none;}
+.AppsMenu .menu li[data-href]:hover{text-decoration:underline;}
+
+.ActionButtons input[type="button"].wkstButton,
+.ActionButtons button.wkstButton,
+.ActionButtons label.menuButton {background-color:var(--color-primary-dark);}
+.ActionButtons input[type="button"].wkstButton.disabled,
+.ActionButtons button.wkstButton.disabled,
+.ActionButtons label.menuButton.disabled {color: var(--color-dark); background-color: var(--color-primary-dark-disabled);}
+
+.ActionButtons input.wkstButton.withMenu,
+.ActionButtons button.wkstButton.withMenu { border: 1.5px solid transparent; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 1px solid var(--color-black-shadow); }
+.ActionButtons input.wkstButton.withMenu.disabled,
+.ActionButtons button.wkstButton.withMenu.disabled { border-right:none;}
+.ActionButtons button.wkstButton.withMenu.disabled.border { border: 1.5px solid var(--color-primary); border-right: none; }
+.ActionButtons label.menuButton {border-top-left-radius:0; border-bottom-left-radius:0; border-left:1px solid var(--color-primary);}
+.ActionButtons label.menuButton.disabled {border-left:none;}
+.ActionButtons label.menuButton.disabled:after { border-top-color: var(--color-dark); }
+
+.Utilities input[type="checkbox"].menuOpener:checked ~ label.menuButton,
+.Utilities label.menuButton { background-color: transparent; }
+.Utilities .wkstUtilityButton {background-color:transparent;color:inherit;border:none;}
+
+label.menuButton + div.menu {background-color:var(--color-white); border:1px solid var(--color-dark-border); border-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 2px;}
+label.menuButton + div.menu button {color:var(--color-text); text-decoration:none; border:1px solid transparent; border-radius:var(--dim-border-radius); background-color:transparent; text-align:left;}
+label.menuButton + div.menu button.disabled {color:var(--color-dark);}
+label.menuButton + div.menu button:hover {text-decoration:underline; background-color:var(--color-primary-medium-trans); border-color:var(--color-primary-dark);}
+label.menuButton + div.menu button svg {fill:var(--color-primary-dark);}
+label.menuButton + div.menu button.disabled svg {fill:var(--color-dark);}
+
+label.menuButton + div.menu.mega button[data-tool] {border:1px dashed var(--color-primary-light); background-color:var(--color-primary-light-shadow);}
+label.menuButton + div.menu.mega button[data-tool] svg {fill:var(--color-primary-light);}
+
+label.menuButton + div.menu ul li {border:0; background-color:transparent; text-align:left;}
+label.menuButton + div.menu ul li.separator {background-color:var(--color-dark-border); border-style:solid; border-color:var(--color-white); border-width:2px 0px;}
+
+label.menuButton + div.menu.mega > ul ul li.subHeading {font-weight:600; font-size:1.4rem; color:var(--color-primary-medium); border-bottom:1px solid var(--color-primary-medium);}
+label.menuButton + div.menu.mega > ul ul li.default:first-child:last-child {font-style:italic;}
+
+label.menuButton + div.menu.mega li.GlobalCopy button:after {content:"*"; font-weight:600; color:var(--color-primary);}
+label.menuButton + div.menu.mega button:hover {text-decoration:none;}
+
+.Tabs ul li.current {background-color:var(--color-selected-tab); border-top-color:var(--color-primary-dark);}
+
+.Tabs ul[data-sticky="1"] li.current:not(.sticky):not([data-controller*='Results']):hover,
+.Tabs ul[data-sticky="1"] li.current.sticky {border-top-color:var(--color-primary-medium);}
+.Tabs ul[data-sticky="1"] li.current:not(.sticky):not([data-controller*='Results']):hover:before, 
+.Tabs ul[data-sticky="1"] li.current.sticky:before {content:""; border-bottom:1.5rem solid var(--color-primary-light); border-left:1.5rem solid var(--color-primary-medium); box-shadow:2px 1px 2px rgba(0,0,0,0.15);}
+.Tabs ul[data-sticky="1"] .menu li.current:not(.sticky):hover,
+.Tabs ul[data-sticky="1"] .menu li.current.sticky {border-top-color:var(--color-selected-tab);}
+.Tabs ul[data-sticky="1"] .menu li.current:not(.sticky):hover:before,
+.Tabs ul[data-sticky="1"] .menu li.current.sticky:before {border-left-color:var(--color-selected-tab);}
+
+.Tabs ul li.disabled,
+.Tabs ul li.disabled a {color:var(--color-light-disabled);}
+.Tabs ul li {border:0; border-top:4px solid transparent;}
+.Tabs ul li.iconMenu.current {border-top-color:var(--color-tab-menu);}
+.Tabs .menu {border-bottom-left-radius:var(--dim-border-radius); border-bottom-right-radius:var(--dim-border-radius);}
+
+.ImageEditor .Tabs {}
+.ImageEditor .Tabs ul {border:0; border-bottom:solid 1px var(--color-dark);}
+.ImageEditor .Tabs ul li.current {border-bottom:3px solid var(--color-primary-medium); background-color:transparent; border-top-color:transparent;}
+.ImageEditor .Tabs ul li label {background:inherit;color:inherit;cursor:inherit;}
+.ImageEditor .cropper {border-color:var(--color-white); border-style:dashed; border-width:2px; background-color:transparent;}
+.ImageEditor .cropper .resize {background-color:var(--color-white);}
+.ImageEditor .ImageViewer {border:1px solid var(--color-medium);}
+.ImageEditor .ImageViewer .fuzzyCover {background-color:var(--color-primary-dark-disabled);}
+
+svg.overlay {border-radius:50%;}
+svg.overlay.error {background-color:var(--color-white); fill:var(--color-error);}
+svg.overlay.changed {background-color:var(--color-success); fill:var(--color-white);}
+
+.WkstSearch {outline:none;}
+.WkstSearch svg {fill:var(--color-dark);}
+.WkstSearch .button {}
+.WkstSearch .button > span:after{content:"";}
+.WkstSearch .button span:not(.disabled) svg,
+.WkstSearch .button label svg {fill:var(--color-primary);}
+.WkstSearch .button label.caretDown:after {border-top-color:var(--color-primary);}
+.WkstSearch input[type="checkbox"].menuOpener:checked ~ label.menuButton,
+.WkstSearch label.menuButton {background-color:transparent;}
+
+.WkstSearch .input .searchcrumb {border:1px inset var(--color-border-light); background-color:var(--color-lightest);}
+.WkstSearch .input .searchcrumb li > span {border:1px solid transparent; border-radius:var(--dim-border-radius);}
+.WkstSearch .input .searchcrumb li > span:hover {border-color:var(--color-primary-light); background-color:var(--color-primary-light-shadow);}
+.WkstSearch .input .searchcrumb span.crumb {font-weight:600;}
+.WkstSearch .input .search {border:1px inset var(--color-border-light); outline:none;}
+
+.WkstSearch .suggestions:not(:empty) {background-color:var(--color-white); border-bottom-left-radius:var(--dim-border-radius); border-bottom-right-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 2px;}
+.WkstSearch .suggestions svg {fill:currentColor;}
+.WkstSearch .suggestions li {border-left:4px solid transparent;}
+.WkstSearch .suggestions li.hover,
+.WkstSearch .suggestions li:hover {background-color:var(--color-table-altrow); border-left-color:var(--color-primary-medium);}
+
+.WkstTree ul li > span {border-left:4px solid transparent; text-overflow:clip; white-space:nowrap;}
+.WkstTree ul li.selected > span {background-color:var(--color-medium); border-left-color:var(--color-primary-light);}
+.WkstTree li span + ul:before {content:url(images/tree/caret-right.svg); /* this svg has the dimensions and color hardcoded */}
+.WkstTree li.open > span + ul:before {content:url(images/tree/caret-down.svg); /* this svg has the dimensions and color hardcoded */}
+
+.WkstTree li svg {fill:currentColor;}
+.WkstTree li.hidden > span > svg {opacity:0.3;}
+.WkstTree li.hidden > span {font-style:italic; color:var(--color-dark);}
+
+.WkstTree li svg {fill:var(--color-primary);}
+.WkstTree li.d > span > svg {fill:var(--color-tree-dashboard);}
+.WkstTree li.g > span svg {fill:var(--color-tree-globe);}
+.WkstTree li.f svg {fill:var(--color-tree-folder);}
+.WkstTree li.db svg {fill:var(--color-tree-data);}
+.WkstTree li.rb > span svg {fill:var(--color-tree-recycle);}
+
+.WkstNotice {border:1px solid transparent; background-color:var(--color-medium);}
+.WkstNotice.info,
+.help {border-color:var(--color-primary-medium);}
+.WkstNotice.info svg,
+.help svg{fill:var(--color-primary-medium);}
+.WkstNotice.alert {border-color:var(--color-alert);}
+.WkstNotice.alert svg {fill:var(--color-alert);}
+.WkstNotice.error {border-color:var(--color-error);}
+.WkstNotice.error svg {fill:var(--color-error);}
+.WkstNotice.guide {background-color:var(--color-primary-light-shadow); border-color:var(--color-primary-light); border-style:dashed;}
+.WkstNotice.guide svg {fill:var(--color-primary-light);}
+.WkstNotice.XMLDisplay p {font-size:1.6rem;font-family:monospace;}
+
+.WkstContent .ContentFilters label,
+.ContentActions label:not(.menuButton):not(.fuzzyCover) {font-weight:600; color:var(--color-primary); background:linear-gradient(to bottom, var(--color-lightest) 50%,var(--color-white) 78%);}
+.WkstContent .ContentFilters input[type="checkbox"] + label {font-weight:normal;}
+.WkstContent .ContentFilters label.transparent {background:none;}
+.WkstContent .ContentFilters svg.icon.filter {fill:var(--color-dark);}
+
+.Field.ContentActions > span.actions.left + span.actions.right {border-left:1px solid var(--color-border-light);}
+
+.Wkst h4.FieldHeading {font-size:18px; font-weight:600; color:var(--color-primary); border-bottom:2px solid var(--color-secondary);}
+
+.Field .circle-icon {border-radius:50%; border:1px solid var(--color-dark-border); color:var(--color-primary);}
+.Field .circle-icon:hover {background-color:var(--color-table-altrow); color:var(--color-primary-medium); box-shadow:0 0 3px var(--color-black-shadow);}
+.Field .circle-icon.disabled, .Field .circle-icon:disabled {color:var(--color-dark);}
+
+.Field > .msg .bubble {border-width:1px; border-style:solid; border-color:var(--color-primary); background-color:var(--color-white); opacity:0; transition:opacity 0.2s ease-in;}
+.Field > .body + .msg .bubble {border-left-width:4px;}
+.Field > .body + .msg .bubble.left {border-left-width:1px; border-right-width:4px;}
+.Field > .body + .msg .bubble:after {content:""; border:8px solid; border-color:inherit; border-top-color:transparent; border-left-color:transparent; border-bottom-color:transparent; border-radius:var(--dim-border-radius);}
+.Field > .body + .msg .bubble.left:after {border-left-color:inherit; border-right-color:transparent;}
+
+@media (max-width:1279px) {
+    .Field > .body + .msg .bubble {border-width:1px;}
+    .Field > .body + .msg .bubble {border-top-width:4px;}
+    li.inline .Field > .body + .msg .bubble {border-top-width:1px; border-left-width:4px;}
+    .Field > .body + .msg .bubble:after {border-right-color:transparent; border-bottom-color:inherit;}
+    li.inline .Field > .body + .msg .bubble:after {border-right-color:inherit; border-bottom-color:transparent;}
+}
+
+.Field.error > .msg .bubble,
+.Field li.inline .Field:not(:last-child).error ~ .Field:last-child .msg .bubble.error {border-color:var(--color-error); color:var(--color-error); background-color:var(--color-error-shadow);}
+.Field.changed > .msg .bubble,
+.Field li.inline .Field:not(:last-child).changed ~ .Field:last-child .msg .bubble.changed {border-color:var(--color-success); color:var(--color-success); background-color:var(--color-success-shadow);}
+
+.Field.error > .msg .bubble.error,
+.Field.changed > .msg .bubble.changed,
+.Field li.inline .Field:not(:last-child).error ~ .Field:last-child .msg .bubble.error,
+.Field li.inline .Field:not(:last-child).changed ~ .Field:last-child .msg .bubble.changed,
+.Field li.inline .Field:not(:last-child).changed ~ .Field:not(:last-child):not(.error) ~ .Field:last-child .msg .bubble.changed {opacity:1;}
+
+.Field textarea,
+.Field select {border-radius:var(--dim-border-radius); border:solid 1px var(--color-dark); background-color:var(--color-white);}
+.Field textarea:focus,
+.Field select:focus,
+.Field input[type="text"]:focus,
+.Field .body input:focus,
+.Field .body input[type="file"] + span.input:focus,
+.Field .body input[type="file"]:focus + span.input {outline-color:var(--color-primary); border-color:var(--color-primary);}
+
+.Field textarea[readonly],
+.Field select[readonly],
+.Field input[readonly],
+.Field textarea[readonly]:focus,
+.Field select[readonly]:focus,
+.Field input[readonly]:focus {border-color:var(--color-border-light); outline-color:transparent;}
+
+.Field.error > .body textarea:invalid:not(.ignoreChanges),
+.Field.error > .body select:invalid:not(.ignoreChanges),
+.Field.error > .body input:invalid:not(.ignoreChanges),
+.Field.error > .body input[type="file"]:invalid + span.input {outline-color:var(--color-error); border-color:var(--color-error);}
+.Field.error > .body label:not(.ignoreChanges) {color:var(--color-error);}
+.Field.error > .body .Tabs label {color: var(--color-primary-light);}
+.Field.changed > .body textarea:valid:not(.ignoreChanges), 
+.Field.changed > .body select:valid:not(.ignoreChanges), 
+.Field.changed > .body input:valid:not(.ignoreChanges), 
+.Field.changed > .body input[type="file"]:valid + span.input {outline-color: var(--color-success);border-color: var(--color-success);}
+.Field.changed > .body > label,
+.Field.changed > .body ul li:first-child:last-child label {color:var(--color-success);}
+.Field.changed > .body > label ~ ul li:first-child:last-child label {color:inherit;}
+
+.Field.disabled .body textarea,
+.Field.disabled .body select,
+.Field .body select:disabled,
+.Field.disabled .body input,
+.Field.disabled .body input[type="file"] + span.input {border:solid 1px var(--color-border-light); background-color:var(--color-medium-disabled); color:var(--color-dark);}
+.Field .body input[type="text"][readonly],
+.Field .body textarea[readonly] {border:solid 1px var(--color-border-light); background:linear-gradient(to bottom, var(--color-lightest) 5%,var(--color-medium-disabled) 100%); color:var(--color-dark);}
+.Field .border {border-radius:var(--dim-border-radius); border:solid 1px var(--color-dark); background-color:var(--color-white);}
+
+.Field .body ::placeholder {font-style:italic;}
+.Field.disabled .body ::placeholder {color:var(--color-dark-disabled);}
+
+.Field .body label {font-size:1.4rem; font-weight:600; color:var(--color-primary); background:linear-gradient(to bottom, var(--color-lightest) 48%,var(--color-white) 78%);}
+.Field .body label.fuzzyCover {background:transparent;}
+.Field .body span.flex label.menuButton {font-weight:400; background:var(--color-primary-light); color:var(--color-white); border-radius:25px; border:0;}
+.Field.disabled .body label,
+.Field.disabled .body span.flex label,
+.Field .body label.disabled {color:var(--color-dark); background:linear-gradient(to bottom, var(--color-lightest) 48%,var(--color-medium-disabled) 78%);}
+
+.Field .body span.flex label {color:var(--color-text);}
+.Field .body span.data-mover label {background:transparent;}
+
+.Field .body span.flex svg {color:var(--color-primary); fill:currentColor;}
+.Field.disabled .body span.flex svg {color:var(--color-primary-dark-disabled);}
+
+.Field .body .help p {font-family:var(--fontfamily-primary); font-size:1.3rem; font-weight:400; line-height:1.4rem; color:var(--color-text); background-color:transparent;}
+.Field .body .help div label {font-size:1.3rem; background-color:transparent;}
+.Field .body .help li {align-items:center;}
+.Field .body .help > label svg {background-color: transparent;}
+.Field .body .help .border {border-color:var(--color-primary-dark); background-color:var(--color-primary-light-shadow);}
+.Field .body .help > div dt {font-weight:600;}
+
+.Field .body ul.cmscontrols > li.labelLeft > .Field > .body > label,
+.Field .body ul.cmscontrols > li.labelRight > .Field > .body > label {background:transparent; font-weight:400; color:var(--color-text);}
+.Field .body ul.cmscontrols > li.labelLeft > .Field.changed > .body > label,
+.Field .body ul.cmscontrols > li.labelRight > .Field.changed > .body > label {color:var(--color-success);}
+.Field .body ul.cmscontrols > li.labelLeft > .Field.error > .body > label,
+.Field .body ul.cmscontrols > li.labelRight > .Field.error > .body > label {color:var(--color-error);}
+.Field .body ul.cmscontrols > li.labelLeft > .Field.disabled > .body > label,
+.Field .body ul.cmscontrols > li.labelRight > .Field.disabled > .body > label {color:var(--color-dark);}
+
+/* Data Mover */
+.Field .body span.data-mover > label {font-weight:400; color:var(--color-text);}
+
+/* DateTime */
+.WkstContent .Field.CmsDateTime .body > label {background:transparent;}
+
+/* Recurring DateTime */
+.Field.CmsRecurringDateTime.changed > .body select:valid,
+.Field.CmsRecurringDateTime.changed > .body input:valid {border:solid 1px var(--color-dark);}
+
+.Field.CmsRecurringDateTime.changed > .body .RecurrenceEditor ul li:first-child:last-child label {color:var(--color-text)}
+
+.Field.CmsRecurringDateTime > .body span.flex .menuOpener:checked ~ label.menuButton {background-color:var(--color-tab-menu);}
+.Field.CmsRecurringDateTime > .body span.flex .menuOpener:checked ~ input.wkstButton {background-color:var(--color-dark-disabled);}
+
+.menu.RecurrenceEditor ul li label {font-weight:400;}
+.menu.RecurrenceEditor .recurrenceInput > div:first-child {border-right:solid 1px var(--color-border-light);}
+.menu.RecurrenceEditor .recurrenceExcludes ul.valuesField  {border-radius:var(--dim-border-radius); border:solid 1px var(--color-dark); background-color:var(--color-white);}
+.menu.RecurrenceEditor .recurrenceExcludes ul.valuesField li:hover {text-decoration:underline;}
+.menu.RecurrenceEditor .recurrenceExcludes ul.valuesField li.select {background-color:var(--color-primary-medium-trans);}
+
+/* Checkboxes and Radios */
+.Field.CmsCheckableItems.disabled label,
+.Field.CmsCheckableItems label {background:transparent;}
+.Field.CmsCheckableItems ul li label {color:var(--color-text); font-weight:400;}
+
+.Field.CmsCheckableItems ul.buttons li label {background-color:var(--color-light); border-top:4px solid transparent; border-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 2px;}
+.Field.CmsCheckableItems ul.buttons li input[type="radio"]:checked ~ label {border-top-color:var(--color-primary-light); border-top-left-radius:0px; border-top-right-radius:0px; box-shadow:var(--color-black-shadow) 2px 2px 2px; color:var(--color-primary);}
+
+.radioList .Field.CmsCheckableItems ul.head li {font-weight:600;}
+
+/* Span */
+.Field.CmsSpan .body span {color:var(--color-text); font-weight:400;}
+.Field.CmsSpan .body label span {color:inherit; font-weight:inherit;}
+.Field.CmsSpan .body label {background:transparent;}
+
+/* NavPicker */
+.Field.CmsNavPicker nav[data-multi] li.selected > span {background:transparent; border-color:transparent;}
+
+/* Tags Picker */
+.Field.CmsTagsPicker .body .box:not(.help) > div {border-radius: 2px; border: solid 1px var(--color-dark); background-color: var(--color-white);}
+.Field.CmsTagsPicker .body .value div div label { background-color: transparent; }
+.Field.CmsTagsPicker .body .tagList .help { background:linear-gradient(135deg, rgba(252,253,254,1) 48%,rgba(255,255,255,1) 78%)}
+.Field.CmsTagsPicker .tagList .availableAttributes .showAll {text-decoration:underline; text-decoration-color: var(--color-primary-dark);} 
+.Field.CmsTagsPicker .tagList .availableAttributes .showAll:hover {text-decoration-color: var(--color-primary-medium);}
+.Field.CmsTagsPicker .tagList li label {font-size:1.3rem; font-weight:normal; color:inherit;}
+.Field.CmsTagsPicker li label {background: transparent}
+.Field.CmsTagsPicker li.selected,
+.Field.CmsTagsPicker .availableTags li:hover:not([disabled]),
+.Field.CmsTagsPicker .availableAttributes li:hover:not([disabled]),
+.Field.CmsTagsPicker .selectedAttributes li ul li:hover:not([disabled]) {border-radius: 2px; background-color: var(--color-primary-medium-trans); border: 1px solid var(--color-primary-dark); }
+.Field.CmsTagsPicker .availableTags li[disabled],
+.Field.CmsTagsPicker .availableAttributes li[disabled],
+.Field.CmsTagsPicker .selectedAttributes li ul li[disabled] {font-style:italic; color:var(--color-dark);}
+.Field.CmsTagsPicker .selectedAttributes .valuesField > li > label {font-weight: bold;}
+.Field.CmsTagsPicker span{color: var(--color-primary-dark);}
+
+.Field.CmsTagsPicker .Checked  {color:var(--color-success); fill:currentColor;}
+.Field.CmsTagsPicker .NotChecked {color:var(--color-error); fill:currentColor;}
+.Field.CmsTagsPicker .Mixed {color:var(--color-text-disabled); fill:currentColor;}
+.Field.CmsTagsPicker .icon.disabled {color:var(--color-success-strong-shadow); fill:currentColor;}
+
+.Field.CmsTagsPicker.changed input:valid {outline-color:unset; border-color:var(--color-dark);} 
+.Field.CmsTagsPicker.changed .body ul li:first-child:last-child label {color:inherit;}
+
+
+/* SuggestListBox */
+.Field.CmsSuggestListBox .body .icons {color:var(--color-success); fill:currentColor;}
+.Field.CmsSuggestListBox .body .icon.filter{fill:var(--color-dark);}
+.Field.CmsSuggestListBox .body .icon.add{fill:var(--color-success);}
+.Field.CmsSuggestListBox .body li.selected,
+.Field.CmsSuggestListBox .body li.dragging,
+.Field.CmsSuggestListBox .body li:not(.groupHeading):hover {border-radius:var(--dim-border-radius); border:1px solid var(--color-primary-dark); background-color:var(--color-primary-medium-trans);}
+.Field.CmsSuggestListBox .body li.groupHeading {font-size:18px; font-weight:600; color:var(--color-primary); border-bottom:2px solid var(--color-secondary);}
+.Field.CmsSuggestListBox.changed .body .search input[type="text"] {border-color:var(--color-dark);}
+.Field.CmsSuggestListBox.changed .body .search input[type="text"]:focus {outline-color:var(--color-primary); border-color:var(--color-primary);}
+.Field.CmsSuggestListBox li[draggable] {}
+.Field.CmsSuggestListBox li.dragging {opacity:0.4;}
+
+/* CssClassesList */
+.Field.CmsCssClassesListBox .Checked  {color:var(--color-success); fill:currentColor;}
+.Field.CmsCssClassesListBox .NotChecked {color:var(--color-error); fill:currentColor;}
+.Field.CmsCssClassesListBox .Mixed {color:var(--color-text-disabled); fill:currentColor;}
+
+/* FileData - preview area on File Content tab */
+.Field.CmsFileData .PreviewInfo .sizeInfo div {font-weight:600;}
+.Field.CmsFileData .PreviewInfo ul {border-radius:var(--dim-border-radius); border:1px solid var(--color-black-shadow); background-color:var(--color-table-altrow);}
+
+/* ConfigCollection */
+.Field.CmsConfigCollection .body .icons {color:var(--color-success); fill:currentColor;}
+.Field.CmsConfigCollection .body svg.icon {color:var(--color-primary);}
+.Field.CmsConfigCollection .body li.selected,
+.Field.CmsConfigCollection .body li.dragging,
+.Field.CmsConfigCollection .body li:hover {border-radius:var(--dim-border-radius); border:1px solid var(--color-primary-dark); background-color:var(--color-primary-medium-trans);}
+.Field.CmsConfigCollection .body ul li span:first-of-type:not(:last-of-type) {font-weight:bold;}
+.Field.CmsConfigCollection .body ul li span.subtype {font-style:italic; color:var(--color-dark);}
+.Field.CmsConfigCollection .body ul li span.subtype:not(:empty):before {content:'-';}
+.Field.CmsConfigCollection li[draggable] {}
+.Field.CmsConfigCollection li.dragging {opacity:0.4;}
+
+.Field.CmsNameValuePairs .body ul.valuesField  {border-radius:var(--dim-border-radius); border:solid 1px var(--color-dark); background-color:var(--color-white);}
+.Field.CmsNameValuePairs .body ul.valuesField li {border-bottom:1px dotted #ccc; word-break:break-all;}
+.Field.CmsNameValuePairs .body ul.valuesField li:hover {text-decoration:underline;}
+.Field.CmsNameValuePairs .body ul.valuesField li.select {background-color:var(--color-primary-medium-trans);}
+
+.Field.CmsKeyValuePairs .body ul.valuesField  {border-radius:var(--dim-border-radius); border:solid 1px var(--color-dark); background-color:var(--color-white);}
+.Field.CmsKeyValuePairs .body ul.valuesField li {border-bottom:1px dotted #ccc; word-break:break-all;}
+.Field.CmsKeyValuePairs .body ul.valuesField li:hover {text-decoration:underline;}
+.Field.CmsKeyValuePairs .body ul.valuesField li.select {background-color:var(--color-primary-medium-trans);}
+.Field.CmsKeyValuePairs .body ul.valuesField li.error,
+.Field.CmsKeyValuePairs .body ul.valuesField li.select.error {background-color:var(--color-error-shadow);}
+.Field.CmsKeyValuePairs.disabled .body > label:first-child {background:transparent;}
+.Field.CmsKeyValuePairs.disabled .body ul.valuesField {border:solid 1px var(--color-border-light); background-color:var(--color-medium); color:var(--color-dark);}
+
+/* Radius Options */
+.Field.CmsKeyValuePairs .body ul.valuesField li > span[data-property][data-label]:after{content:attr(data-label);}
+
+/* CKEditor */
+.Field.CmsCKEditor .body div[data-ui="Popup"]:hover,
+.Field.CmsCKEditor .body div[data-ui="Popup"]:focus {outline-color:var(--color-primary); border-color:var(--color-primary);}
+
+/* ContentResults Tab */
+.WkstContent .Field.ContentFilters {background-color:var(--color-lightest);}
+
+.Field.ContentActions .caretDown.disabled:after {border-top-color:var(--color-dark);}
+
+.Field.ContentResults table {border-collapse:collapse; border-radius:var(--dim-border-radius); font-size:1.3rem; }
+
+.Field.ContentResults tr:nth-of-type(2n+1) {background-color:var(--color-table-altrow);}
+.Field.ContentResults tr:nth-of-type(2n) {background-color:var(--color-table-row);}
+.Field.ContentResults div.ResultsHeader,
+.Field.ContentResults tr.ResultsHeader th {background-color:var(--color-table-head); color:var(--color-primary);}
+.Field.ContentResults tr.hidden svg {opacity:0.3;}
+.Field.ContentResults tr.hidden td {font-style:italic; color:var(--color-dark);}
+
+.Field.ContentResults div.ResultsHeader,
+.Field.ContentResults th:first-child {border-top-left-radius:var(--dim-border-radius);}
+.Field.ContentResults div.ResultsHeader,
+.Field.ContentResults th:last-child {border-top-right-radius:var(--dim-border-radius);}
+.Field.ContentResults th {text-align:left; white-space:nowrap; font-weight:600;}
+
+.Field.ContentResults th[data-sort-alias] span {text-decoration:underline;}
+.Field.ContentResults th[data-sort-direction] span:after {content:""; border:6px solid var(--color-primary); border-radius:var(--dim-border-radius); border-right-color:transparent; border-left-color:transparent;}
+.Field.ContentResults th[data-sort-direction="DESC"] span:after {border-bottom-color:transparent;}
+.Field.ContentResults th[data-sort-direction="ASC"] span:after {border-top-color:transparent;}
+
+.Field.ContentResults span.matched {background-color:var(--color-text-highlight);}
+.Field.ContentResults .WkstResizeH {border:none; background-color:var(--color-table-head);}
+.Field.ContentResults .icon {fill:var(--color-primary);}
+
+.Field.ContentResults .Folder {border-radius:var(--dim-border-radius); border:1px solid var(--color-dark-border);}
+.Field.ContentResults .File {border-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 5px;}
+.Field.ContentResults .icon.error {fill:var(--color-error);}
+
+.WkstContent .Field.ContentResults .replaceResult label {font-weight: 600;color: var(--color-primary);font-size:1.4rem;}
+.WkstContent .Field.ContentResults .replaceResult .Field .body > div {border-radius: var(--dim-border-radius);border: solid 1px var(--color-dark);background-color: var(--color-white);font-size: 1.4rem;}
+
+.Field.ContentResults.Dashboard .Widget[draggable='true'] {border:none; border-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 5px;}
+.Field.ContentResults.Dashboard .Widget.dragging {opacity:0.4;}
+
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.bar {background-color:var(--color-primary-light); border:1px solid var(--color-primary);}
+
+.Field.ContentResults.Dashboard .Widget table caption,
+.Field.ContentResults.DashboardWidgetResults table caption{text-align:left; font-weight:600; color:var(--color-primary);}
+.Field.ContentResults.Dashboard .Widget table caption .primary {border-top-left-radius:var(--dim-border-radius); border-top-right-radius:var(--dim-border-radius); background-color:var(--color-table-head);}
+.Field.ContentResults.Dashboard .Widget table caption .secondary,
+.Field.ContentResults.DashboardWidgetResults table caption > div {font-size:1.1rem; background-color:var(--color-table-altrow); border-bottom:1px solid var(--color-table-head);}
+.Field.ContentResults.Dashboard tr:first-child:last-child {background-color:transparent;}
+.Field.ContentResults.Dashboard tr:nth-of-type(2n+1) {background-color:var(--color-table-row);}
+.Field.ContentResults.Dashboard tr:nth-of-type(2n) {background-color:var(--color-table-altrow);}
+
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.grid .label {border-top:1px dotted lightgray;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.grid .label.bottom {border-top:1px solid darkslategray;}
+
+.Field.ContentResults .Step:nth-of-type(2n+1) > span {background-color:var(--color-table-altrow);}
+.Field.ContentResults .Step:nth-of-type(2n) > span {background-color:var(--color-table-row);}
+
+/* SEO results view */
+.Field.ContentResults div.serp {font-family:sans-serif;}
+.Field.ContentResults div.serp span.title {font-size:18px; color:blue;}
+.Field.ContentResults div.serp span.url {font-size:14px; color:green;}
+.Field.ContentResults div.serp span.desc {line-height:1.4; color:slategray;}
+.Field.ContentResults div.serp span.extra {color:red;}
+
+/* Comment view */
+#Comments tr .icon.changed {fill:var(--color-success);}
+.Field.ContentResults div.comment {font-family:sans-serif;}
+.Field.ContentResults div.comment span.title {font-weight:600;}
+
+/* Advanced Search and Replace results view*/
+.WkstNotice ul.tabular li > span {font-weight:600;}
+#AdvReplaceResults .resultItem:nth-of-type(2n+1) > tr {background-color:var(--color-table-altrow);}
+#AdvReplaceResults .resultItem:nth-of-type(2n+1) .Field .body label {background:linear-gradient(to bottom, var(--color-table-altrow) 48%, var(--color-white) 78%)}
+#AdvReplaceResults .resultItem:nth-of-type(2n) > tr {background-color: var(--color-table-row);}
+#AdvReplaceResults .resultItem:nth-of-type(2n) .Field .body label {background:linear-gradient(to bottom, var(--color-table-row) 48%, var(--color-white) 78%)}
+
+/* Browse View Editor */
+.Field.ViewItems .ViewItem {border:solid 1px var(--color-border-light); border-radius:var(--dim-border-radius);}
+.Field.ViewItems .ViewItem .header {color:var(--color-primary); border-left:4px solid transparent; border-top-left-radius:var(--dim-border-radius); border-top-right-radius:var(--dim-border-radius); background-color:var(--color-table-head);}
+.Field.ViewItems .ViewItem .header .icons svg {fill:currentColor;}
+.Field.ViewItems .ViewItem .header .icons svg:hover {fill:var(--color-primary-medium);}
+.Field.ViewItems .ViewItem .info {font-size:1.1rem; background-color:var(--color-table-altrow); border-left:4px solid transparent;}
+
+/* Content Tab */
+
+.Field.BlockItems .BlockItem {border:none; border-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 5px;}
+.Field.BlockItems .BlockItem .header {color:var(--color-primary); border-left:4px solid transparent; border-top-left-radius:var(--dim-border-radius); border-top-right-radius:var(--dim-border-radius); background-color:var(--color-table-head);}
+.Field.BlockItems .BlockItem .header .icons.caretDown:after {content:""; border:6px solid var(--color-primary); border-bottom-color:transparent; border-right-color:transparent; border-left-color:transparent; border-radius:var(--dim-border-radius);}
+.TabContent.collapseAll .Field.BlockItems .BlockItem .header .icons.caretDown:after,
+.Field.BlockItems .BlockItem.collapse .header .icons.caretDown:after {border-left-color:initial; border-top-color:transparent;}
+.Field.BlockItems .BlockItem .header .icons svg {fill:currentColor;}
+.Field.BlockItems .BlockItem .header .icons:last-child svg:hover {fill:var(--color-primary-medium);}
+.Field.BlockItems .BlockItem .header .title span:first-child {font-weight:600;}
+.Field.BlockItems .BlockItem .header .title svg {display:none;}
+.Field.BlockItems .BlockItem .info {font-size:1.1rem; background-color:var(--color-table-altrow); border-left:4px solid transparent;}
+.Field.BlockItems .BlockItem .content {border-left:4px solid transparent; border-bottom-left-radius:2px;}
+.Field.BlockItems .BlockItem .content > p.previewImage {border:1px dashed var(--color-dark-border);}
+/*
+.Field.BlockItems .BlockItem .editor {border:1px solid var(--color-dark-border);}
+.Field.BlockItems .BlockItem .editor.titlebar {color:var(--color-primary); background-color:var(--color-medium); border-bottom:none;} */
+
+.Field.BlockItems .BlockItem.dragging {opacity:0.4;}
+
+.Field.BlockItems .BlockItem.selected {box-shadow:var(--color-black-shadow) 3px 3px 5px;}
+.TabContent.Edit .BlockItem.selected {box-shadow:none;}
+.Field.BlockItems .BlockItem.selected .header,
+.Field.BlockItems .BlockItem.selected .info,
+.Field.BlockItems .BlockItem.selected .content {border-left-color:var(--color-primary-light);}
+
+.Field.BlockItems .BlockItem.changed .header {background-color:var(--color-success-strong-shadow);}
+.Field.BlockItems .BlockItem.changed .header .icons svg:hover {fill:currentColor;}
+.Field.BlockItems .BlockItem.changed .header .icon.changed,
+.Field.BlockItems .BlockItem.changed .header .title {color:var(--color-success);}
+.Field.BlockItems .BlockItem.changed .info {background-color:var(--color-success-shadow);}
+
+/* Block Copies */
+.BlockCopyItems .BlockCopyItem {border:solid 1px var(--color-dark); border-radius:var(--dim-border-radius);}
+.BlockCopyItems .BlockCopyItem .title {font-weight:600; background-color:var(--color-table-head); color:var(--color-primary);}
+.BlockCopyItems .BlockCopyItem .preview svg {fill:var(--color-primary-light);}
+.BlockCopyItems .BlockCopyItem .info {background-color:var(--color-light);}
+.BlockCopyItems .BlockCopyItem .info p > span {font-weight:600;}
+.BlockCopyItems .BlockCopyItem.selected {border:4px solid var(--color-primary-light);}
+
+.DialogInner.TabContent .Field.Grouping .preview {border:1px solid var(--color-dark); border-radius:var(--dim-border-radius);}
+.DialogInner.TabContent .Field.Grouping .preview svg {fill:var(--color-primary-light);}
+
+.BlockEditor a.refresh {text-decoration:underline;}
+
+.BlockEditor.FAQ .Field.QuestionList .faqItem {border:1px solid var(--color-border-light);}
+.BlockEditor.FAQ .Field.QuestionList .faqItem > .faqQuestion > .icon,
+.BlockEditor.FAQ .Field.QuestionList .faqItem > .faqAnswer > .icon {background-color:var(--color-primary-medium);color:var(--color-white);font-size: 2.0rem;font-weight: 600;text-align: center;}
+
+.BlockEditor.FAQ .Field.QuestionList .faqItem.selected {border-left-width:4px; border-color:var(--color-primary-light); background-color:var(--color-light); }
+
+.BlockEditor.FAQ .Field.QuestionList .faqItem.deleted {background-color:var(--color-light-disabled); color:var(--color-text-disabled);}
+.BlockEditor.FAQ .Field.QuestionList .faqItem.deleted > .faqQuestion > .icon,
+.BlockEditor.FAQ .Field.QuestionList .faqItem.deleted > .faqAnswer > .icon {background-color:var(--color-primary-medium-disabled);}
+
+.BlockEditor.DataEditor .DataEditorPreview,
+.BlockEditor.FormBlock .FreeformContentPreview {background-color:var(--color-light);border-style: solid;border-color:var(--color-border-light);}
+
+/* Workflow Tab */
+.Field.WorkflowType .body ul li svg {fill:currentColor; fill-opacity:0.4;}
+.Field.WorkflowType .body ul li.Enabled svg {fill-opacity:1;}
+.Field.WorkflowType .body ul li.Editor svg {color:var(--color-text);}
+.Field.WorkflowType .body ul li.Author svg {color:var(--color-primary-medium);}
+
+/* Snippets Tab */
+.WkstContent .TabContent details {border:1px solid var(--color-dark-border); border-radius:var(--dim-border-radius);}
+.WkstContent .TabContent details summary {font-weight:600; color:var(--color-primary); border-left:4px solid transparent; border-top-left-radius:var(--dim-border-radius); border-top-right-radius:var(--dim-border-radius); background-color:var(--color-table-altrow);}
+.SnippetPreview .body pre details {border:none;}
+.SnippetPreview .body pre details summary {background:initial; font-size:initial; font-weight:initial; color:initial;}
+.SnippetPreview .body pre span {border:1px dotted var(--color-dark-border);}
+
+/* Titan Admin Admin Items */
+.WkstContent .AdminItem {border:1px solid var(--color-dark-border); border-radius:var(--dim-border-radius);}
+.WkstContent .AdminItem > .header {color:var(--color-primary); border-left:4px solid transparent; border-top-left-radius:var(--dim-border-radius); border-top-right-radius:var(--dim-border-radius); background-color:var(--color-table-altrow);}
+.WkstContent .AdminItem > .header .icons.caretDown:after {content:""; border:6px solid var(--color-primary); border-bottom-color:transparent; border-right-color:transparent; border-left-color:transparent; border-radius:var(--dim-border-radius);}
+.WkstContent .AdminItem.collapse > .header .icons.caretDown:after {border-left-color:initial; border-top-color:transparent;}
+.WkstContent .AdminItem > .header .icons svg {fill:currentColor;}
+.WkstContent .AdminItem > .header .icons svg:hover {fill:var(--color-primary-medium);}
+.WkstContent .AdminItem > .header .title span:first-child {font-weight:600;}
+.WkstContent .AdminItem > .header .title svg {display:none;}
+.WkstContent .AdminItem .content {border-left:4px solid transparent; border-bottom-left-radius:2px;}
+.WkstContent .AdminItem.changed > .header {background-color:var(--color-success-strong-shadow);}
+.WkstContent .AdminItem.changed > .header .icons svg:hover {fill:currentColor;}
+.WkstContent .AdminItem.changed > .header .icon.changed,
+.WkstContent .AdminItem.changed > .header .title {color:var(--color-success);}
+.WkstContent .AdminItem.error > .header {background-color:var(--color-error-shadow);}
+.WkstContent .AdminItem.error > .header .icons svg:hover {fill:currentColor;}
+.WkstContent .AdminItem.error > .header .icon.error,
+.WkstContent .AdminItem.error > .header .title {color:var(--color-error);}
+
+.WkstContent .TabContent dl dt {font-weight:600;}
+
+/* Where Used Views */
+.WkstContent .Field.ContentResults tbody[data-expandrow] tr td span.count {font-weight:700; font-size:1.4rem;}
+.WkstContent .Field.ContentResults .Results > tbody[data-expandrow]:nth-of-type(2n) {background-color: var(--color-table-altrow);}
+.WkstContent .Field.ContentResults .Results > tbody[data-expandrow]:nth-of-type(2n + 1) {background-color: var(--color-table-row);}
+.WkstContent .Field.ContentResults .Results > tbody[data-expandrow] thead tr {border-bottom:1px solid var(--color-primary);}
+.WkstContent .Field.ContentResults .Results > tbody[data-expandrow] tr {background-color:inherit;}
+
+/* Smart Search */
+.Field.ContentResults .Results#KeywordResults tr.selected {border-style: solid;border-color: var(--color-primary-light);border-width: 0 0 0 5px;}
+.Field.ContentResults .Results#KeywordResults tr.disabled {opacity:0.6;}
+.Field.ContentResults .Results#KeywordResults td.SearchResultTypes > span {border-style:solid;border-color: var(--color-primary-dark-disabled);}
+.Field.ContentResults .Results#KeywordResults td.SearchResultTypes > span[data-selected="selected"] {border-color: var(--color-primary-dark);color: var(--color-white);background-color: var(--color-primary-dark);}
+.Field.ContentResults .Results#KeywordResults .resultEdit .Field .body label {background: transparent;}
+.Field.ContentResults .Results#KeywordResults .resultEdit .Field .body label:first-child {background: linear-gradient(to bottom, transparent 40%, var(--color-white) 78%);}
+
+.Field.ContentResults#ManagedResultEditor .keyword {border:1px solid var(--color-primary-dark);border-radius:5px;}
+.Field.ContentResults#ManagedResultEditor .keyword.current {background-color: var(--color-table-head);color: var(--color-primary-dark);font-weight: bold;}
+.Field.ContentResults#ManagedResultEditor button.icon.disabled > svg {fill:var(--color-primary-dark-disabled);}
+.Field.ContentResults#ManagedResultEditor span.ss_term {font-weight:700;color:var(--color-primary-dark);}
+
+/* Titan Admin - Background Job History */
+.Field.ContentResults .JobStatus a[data-task-id],
+.Field.ContentResults .ExecutionHistory a[data-run-id] {text-decoration:underline; cursor:pointer;}
+
+/* Tab Nav */
+.TabNav nav {font-size:1.4rem;}
+
+.TabNav .nav {border-right:1px solid var(--color-border-light);}
+.DialogEditor .TabNav .nav {background-color:var(--color-light);}
+.TabNav nav ul li > span {border-left:4px solid transparent; text-overflow:clip; white-space:nowrap;}
+.TabNav nav ul li.selected > span {background-color:var(--color-medium); border-left-color:var(--color-primary-light); font-weight:700;}
+.TabNav nav ul li.selected.changed > span {border-left-color:var(--color-success);}
+.TabNav nav ul li.selected.error > span {border-left-color:var(--color-error);}
+.TabNav nav ul li.changed {color:var(--color-success);}
+.TabNav nav ul li.error {color:var(--color-error);}
+
+/* Dialogs */
+.DialogEditor {background-color:var(--color-lightest); border:1px solid var(--color-dark-border); border-radius:var(--dim-border-radius); box-shadow:var(--color-black-shadow) 1px 1px 2px;}
+.DialogEditor:not(:last-child):after,
+.WkstDialog[data-state="waiting"] .DialogEditor:after,
+.WkstDialog[data-state="loading"] .DialogEditor:after {content: ""; background-color:var(--color-black-shadow);}
+
+.DialogEditor .bar {color:var(--color-primary); background-color:var(--color-medium);}
+.DialogEditor:not(.Block) .Field > .msg .bubble {border-width:1px;}
+.DialogEditor:not(.Block) .Field > .body + .msg .bubble {border-top-width:4px;}
+.DialogEditor:not(.Block) .Field > .body + .msg .bubble:after {border-right-color:transparent; border-bottom-color:inherit;}
+.DialogEditor:not(.Block) .Field.error > .msg .bubble,
+.DialogEditor:not(.Block) .Field.changed > .msg .bubble {background-color:var(--color-white);}
+.DialogEditor:not(.Block) .Field.error > .msg .bubble.error.hide {opacity:0;} 
+
+/* The message-only dialogs use .WkstNotice and should not have a background or border */
+.DialogEditor .WkstNotice {background:transparent; border-color:transparent;}
+
+/* Dialogs that use .WkstNotice the "normal way" and want the original styling need to specify .ShowMessages on the dialog */
+.DialogEditor.ShowMessages .WkstNotice {border: 1px solid transparent;background-color: var(--color-medium);}
+.DialogEditor.ShowMessages .WkstNotice.info {border-color: var(--color-primary-medium);}
+.DialogEditor.ShowMessages .WkstNotice.alert {border-color: var(--color-alert);}
+.DialogEditor.ShowMessages .WkstNotice.error {border-color: var(--color-error);}
+
+.DialogEditor.CKFormsDialog .ValidationType {}
+.DialogEditor.CKFormsDialog .Field.ValidationTest.changed .msg .bubble.changed, 
+.DialogEditor.CKFormsDialog .Field.ValidationTest.error .msg .bubble.error {opacity:inherit;}
+
+.DialogEditor.error {border-color:var(--color-error); box-shadow:var(--color-error) 1px 1px 2px;}
+.DialogEditor.error .bar {background-color:var(--color-error-shadow);}
+
+.DialogEditor tr.removed {font-style:italic; color:var(--color-text-disabled);}
+.DialogEditor svg.icon.uploading {animation-name:uploadProgress; animation-duration:1.5s; animation-iteration-count:infinite; animation-timing-function:ease-in-out; animation-direction:normal; animation-play-state:running;}
+.DialogEditor svg.icon.success {fill:var(--color-success);}
+.DialogEditor svg.icon.failed {fill:var(--color-error);}
+.DialogEditor svg.icon.removed {fill:var(--color-text-disabled);}
+
+.DialogEditor #PriorityList div.item:nth-child(2n) {background-color:var(--color-table-altrow);}
+.DialogEditor #PriorityList div.item:nth-child(2n+1) {background-color:var(--color-table-row);}
+
+.DialogEditor .ContentResults .status .error {color:var(--color-error);}
+.DialogEditor .ContentResults.ScrollH {border:1px solid var(--color-dark); border-radius:var(--dim-border-radius);}
+.DialogEditor .Field.ContentResults + ul.ResultsTabs li.tab {border:1px solid var(--color-dark); background-color:var(--color-light); border-bottom-left-radius:var(--dim-border-radius); border-bottom-right-radius:var(--dim-border-radius);}
+.DialogEditor .Field.ContentResults + ul.ResultsTabs li.tab.disabled {color:var(--color-text-disabled);}
+.DialogEditor .Field.ContentResults.Results + ul.ResultsTabs li.tab[data-tab="Results"],
+.DialogEditor .Field.ContentResults.Report + ul.ResultsTabs li.tab[data-tab="Report"],
+.DialogEditor .Field.ContentResults.Errors + ul.ResultsTabs li.tab[data-tab="Errors"] {border-top-color:var(--color-lightest); background-color:var(--color-lightest);}
+
+.DialogEditor.ContentImport progress {border:1px solid var(--color-border-light); border-radius:var(--dim-border-radius);-webkit-appearance:none;-moz-appearance:none;background-color:var(--color-light);}
+.DialogEditor.ContentImport progress[value]::-webkit-progress-value {background-color:var(--color-primary-light);}
+.DialogEditor.ContentImport progress[value]::-webkit-progress-bar {background-color:var(--color-light);}
+.DialogEditor.ContentImport progress[value]::-moz-progress-bar {background-color:var(--color-primary-light);}
+
+.DialogInner .ViewOptions label:nth-of-type(2n+1) {background-color:var(--color-table-row);}
+.DialogInner .ViewOptions label:nth-of-type(2n) {background-color:var(--color-table-altrow);}
+
+/* Content Explorer */
+.ContentExplorer .Main svg {fill:var(--color-dark);}
+.ContentExplorer .Main .view {border-bottom:2px solid var(--color-secondary);}
+.ContentExplorer .Main .view span[data-view-id].selected svg {fill:var(--color-primary);}
+
+.ContentExplorer .Main table.Results {border-collapse:separate; border-spacing:0;}
+.ContentExplorer .Main table.Results tr.selected td {border-block:1px solid var(--color-primary-light);}
+.ContentExplorer .Main table.Results tr.selected td:first-child {border-left:4px solid var(--color-primary-light);}
+.ContentExplorer .Main table.Results tr.selected td:last-child {border-right:1px solid var(--color-primary-light);}
+
+.ContentExplorer .Main div.Results .resultItem {border-style:solid; border-color:transparent; border-width:1px 1px 1px 5px;}
+.ContentExplorer .Main div.Results .resultItem.selected {border-color:var(--color-primary-light);}
+
+.ContentExplorer .Details svg.thumbnail {fill:var(--color-primary-light);}
+.ContentExplorer .Details ul.tabular li span {font-weight:700;}
+.ContentExplorer .Details ul.tabular li[title]:after {content:attr(title);}
+
+.LinkEditor .LinkTypeEditors .ResultsHeader {font-weight:600; font-size:1.5rem; background-color:var(--color-table-head); border-top-left-radius: var(--dim-border-radius); border-top-right-radius:var(--dim-border-radius);}
+.LinkEditor .LinkTypeEditors .resultItem {background-color:var(--color-table-row); border:1px solid transparent; border-left-width:5px; }
+.LinkEditor .LinkTypeEditors .resultItem:nth-of-type(2n+1) {background-color:var(--color-table-altrow);}
+.LinkEditor .LinkTypeEditors .resultItem.selected {border-color:var(--color-primary-light);}
+
+.LinkEditor .LinkTypeEditors .resultItem span.serp {font-family:sans-serif;}
+.LinkEditor .LinkTypeEditors .resultItem span.serp > span.title {font-size:18px; color:blue;}
+.LinkEditor .LinkTypeEditors .resultItem span.serp > span.url {font-size:14px; color:green;}
+.LinkEditor .LinkTypeEditors .resultItem span.serp > span.desc {line-height:1.4; color:slategray;}
+
+/* Animations */
+
+@keyframes uploadProgress {
+    from {transform:rotate(0deg); fill:var(--color-primary-medium);}
+    50% {fill:var(--color-primary-medium-trans);}
+    to {transform:rotate(360deg); fill:var(--color-primary-medium);}
+}

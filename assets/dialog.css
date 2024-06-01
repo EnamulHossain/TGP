@@ -1,0 +1,55 @@
+:root.titanDisplay .Wkst {
+    font-size: unset
+}
+:root.titanDisplay .Wkst .WkstDialog input, :root.titanDisplay .Wkst .WkstDialog select, :root.titanDisplay .Wkst .WkstDialog textarea {
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+    appearance: auto;
+    background-image: unset;
+    color: initial;
+    line-height: initial
+}
+.DialogEditor .Field {
+    display: flex;
+    flex-basis: 100%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px
+}
+.DialogEditor .Field.hide {
+    display: none
+}
+.DialogEditor .Field>.body {
+    width: 90%;
+    flex: 0 1 auto
+}
+.DialogEditor .Field>.multi, .DialogEditor .Field>.msg {
+    display: none
+}
+.DialogEditor .Field.CmsCKEditor {
+    flex-direction: column;
+    padding-bottom: 0
+}
+.DialogEditor .Field.CmsCKEditor>.body {
+    height: 100%;
+    width: 100%
+}
+.DialogEditor .Field.CmsCKEditor>.body .cke {
+    margin-top: 0
+}
+.DialogEditor .Field.CmsContentPicker {
+    flex-direction: column;
+    padding-bottom: 0
+}
+.DialogEditor .Field.CmsContentPicker .body {
+    height: 100%;
+    width: 100%
+}
+.DialogEditor .Field.CmsContentPicker .Field {
+    justify-content: unset;
+    flex: unset
+}
+.DialogEditor .Field.CmsFileUpload input[type="file"] {
+    padding: 0
+}

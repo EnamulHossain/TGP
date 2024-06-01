@@ -1,0 +1,2 @@
+"id","title","chat","chat_script"
+"1", "Chat", "chat-snippet", "<script type=""text/javascript"" id=""zsiqchat"">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode: ""fbba245106fb84f3ac1c95a936d5432bf6288a4e8d0d2f3d4f206bf6dd3033a4f466c173a406b2c4a4ca6d9922fe4396"", values:{},ready:function(){}};var d=document;s=d.createElement(""script"");s.type=""text/javascript"";s.id=""zsiqscript"";s.defer=true;s.src=""https://salesiq.zoho.com/widget"";t=d.getElementsByTagName(""script"")[0];t.parentNode.insertBefore(s,t);</script>"

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+      font-family: Lato, system-ui, sans-serif;
+    }
+    .navbarclass{
+      @apply navbar-center hidden lg:flex text-base font-medium;
+    }
+  }
+
+@layer utilities {
+    .px-18{
+      padding-left: 4.5rem;
+      padding-right: 4.5rem;
+    }
+    .modal-box {
+      max-width: none !important;
+    }
+}

@@ -1,0 +1,25 @@
+$theme-colors: (
+    "primary": #255d78,
+    "secondary": #1f1f1f,
+    "dark": #191919
+);
+
+//bootstrap
+@import "~bootstrap";
+
+// Font Awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+
+//vendor packages
+@import "~lightbox2/dist/css/lightbox.css";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+
+// Fonts - Google Font: Source Sans Pro
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap");
+
+// website theme
+@import "website/overrides";

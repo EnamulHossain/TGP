@@ -1,0 +1,211 @@
+﻿/* Only include styles that affect user interaction
+	- cursor
+	- pointer-events
+	- user-select
+	- outline
+*/
+
+.Wkst .disabled,
+.Wkst[data-multi-selection-on] :not(.disabled).noMulti {cursor:default; pointer-events:none; user-select:none; -moz-user-select:none; -ms-user-select:none;}
+
+.Wkst button,
+.Wkst input.wkstButton,
+.Wkst label.wkstButton,
+.Wkst .AppsMenu .menu li[data-href] {cursor:pointer; user-select:none; outline:none;}
+.Wkst label.menuButton,
+.Wkst .Field .body label.menuButton {cursor:pointer;}
+
+.Wkst .login-form input + label {cursor:text; user-select:none;}
+.Wkst .login-form input:focus + label,
+.Wkst .login-form input:valid + label {cursor:default;}
+
+.Wkst .login-form svg,
+.WkstTree svg.logo,
+.WkstTree li span {user-select:none;}
+
+.WkstTree nav ul li.open > ul[data-expanding="started"],
+.WkstTree nav ul li.open > ul[data-expanding="started"]:before {cursor:wait; pointer-events:painted;}
+.WkstTree nav ul li.open > ul[data-expanding="started"]:after { content:""; color:var(--color-secondary); text-transform:capitalize; font-size:small; animation-name:dotDotDot; animation-delay:0.3s; animation-duration:1.4s; animation-iteration-count:infinite; animation-timing-function:linear; animation-direction:normal; animation-play-state:running;}
+@keyframes dotDotDot {
+	from {content:"loading";}
+    30% {content:"loading.";}
+    40% {content:"loading..";}
+    50% {content:"loading...";}
+	to {content:"loading";}
+}
+
+
+.Wkst .goBack {cursor:pointer;}
+
+.Wkst input[type="checkbox"].menuOpener ~ label {cursor:pointer; user-select:none;}
+.Wkst .disabled input[type="checkbox"].menuOpener ~ label {cursor:default;}
+
+.Tabs ul li {cursor:pointer; user-select:none;}
+.Tabs svg {pointer-events:none;}
+
+.ImageEditor .OriginalImage,
+.ImageEditor .cropper {user-select:none;}
+
+.ImageEditor .cropper {cursor:move;}
+.ImageEditor .cropper .e-resize {cursor:e-resize;}
+.ImageEditor .cropper .w-resize {cursor:w-resize;}
+.ImageEditor .cropper .n-resize {cursor:n-resize;}
+.ImageEditor .cropper .s-resize {cursor:s-resize;}
+.ImageEditor .cropper .ne-resize {cursor:ne-resize;}
+.ImageEditor .cropper .nw-resize {cursor:nw-resize;}
+.ImageEditor .cropper .sw-resize {cursor:sw-resize;}
+.ImageEditor .cropper .se-resize {cursor:se-resize;}
+
+label.menuButton + div.menu button,
+.WkstTree,
+.WkstTree li,
+.WkstTree ul li.selected > span {outline:none;}
+
+label.menuButton + div.menu.mega > ul {user-select:none;}
+
+.WkstSearch .input span {user-select:none;}
+.WkstSearch .searchcrumb li {outline:none;}
+.WkstSearch .button > span:not(.disabled),
+.WkstSearch .searchcrumb li > span {cursor:pointer;}
+.WkstSearch .searchcrumb li > span > svg {cursor:default;}
+.WkstSearch .suggestions li {user-select:none; cursor:pointer;}
+
+.WkstTree ul {pointer-events:none;}
+.WkstTree ul li {pointer-events:auto; cursor:pointer;}
+
+.WkstTree li span + ul:before {pointer-events:all; cursor:pointer;}
+
+.Wkst .WkstResizeH {cursor:col-resize; user-select:none; -moz-user-select:none; -ms-user-select:none;}
+.Wkst *[data-state] > .loading {user-select:none;}
+
+.Field .body label {cursor:default;}
+.Field .body .data-mover label,
+.Field .body svg.icon {cursor:pointer; user-select:none;}
+
+
+.Field.CmsKeyValuePairs .body ul.valuesField li,
+.Field.CmsNameValuePairs .body ul.valuesField li {cursor:pointer; user-select:none;}
+
+.Field.CmsCheckableItems li.button label {cursor:pointer; user-select:none;}
+
+.Field.CmsFileUpload span.input {user-select:none;}
+
+.Field.CmsTagsPicker .value .availableAttributes .showAll:hover,
+.Field.CmsTagsPicker .availableTags li:hover:not([disabled]),
+.Field.CmsTagsPicker .availableAttributes li:hover:not([disabled]),
+.Field.CmsTagsPicker .selectedAttributes li ul li:hover:not([disabled]),
+.Field.CmsTagsPicker .selectedAttributes li ul li label:hover,
+.Field.CmsTagsPicker .moveIcons svg,
+.Field.CmsTagsPicker .help > label svg,
+.Field.CmsTagsPicker .valuesField label,
+.Field.CmsTagsPicker .availableAttributes ul label,
+.Field.CmsFilePicker input[type="button"] {cursor:pointer; user-select:none;}
+
+.Field.CmsTextAreaControl textarea {resize:vertical;}
+.Field.CmsTextAreaControl.FileContents textarea,
+.BlockEditor.RawHTML .Field.CmsTextAreaControl textarea {resize:none; cursor:initial;}
+
+.BlockEditor a.refresh {cursor:pointer;}
+
+.BlockEditor.FAQ .Field.QuestionList .faqItem {cursor:pointer;}
+.BlockEditor.FAQ .Field.QuestionList .faqItem.deleted {cursor:default;}
+
+.BlockEditor.DataEditor a.editFormData, 
+.BlockEditor.FormBlock a.editFormData, 
+.BlockEditor.DataEditor a.generateFormData,
+.Field.CmsCKEditor .body div[data-ui="Popup"],
+.BlockEditor.RawHTML div.Field.CmsTextAreaControl.error .bubble.error.hasFix {cursor:pointer;}
+
+.Field.CmsSuggestListBox {user-select:none;}
+.Field.CmsSuggestListBox .icon.add,
+.Field.CmsSuggestListBox .icons .icon,
+.Field.CmsSuggestListBox li:not(.groupHeading) {cursor:pointer; user-select:none;}
+.Field.CmsSuggestListBox li[draggable='true'] {cursor:move;}
+
+.Field.CmsConfigCollection {user-select:none;}
+.Field.CmsConfigCollection .icons .icon,
+.Field.CmsConfigCollection li {cursor:pointer; user-select:none;}
+.Field.CmsConfigCollection li[draggable='true'] {cursor:move;}
+
+.Field.CmsFileData .PreviewInfo {outline:none;}
+
+.Field.CmsCheckableItems ul.buttons li label {outline:none; cursor:pointer; user-select:none;}
+
+.Field .circle-icon {cursor:pointer; outline:none;}
+
+.ContentActions {user-select:none;}
+.ContentActions label:not(.menuButton):not(.fuzzyCover) {cursor:default;}
+
+.WkstContent .Field.ContentResults a.keywordLink {text-decoration:underline;cursor:pointer;}
+.WkstContent .Field.ContentResults tr:not(.ResultsHeader) {cursor:pointer;}
+
+.WkstContent .Field.ContentResults th[data-sort-alias] span {cursor:pointer;}
+
+.Field.ContentResults .icon {cursor:pointer; user-select:none;}
+.Field.ContentResults .keyword {cursor:pointer;}
+.Field.ContentResults .keyword.current {cursor:default;}
+.Field.ContentResults .keyword .edit:hover:not(.new) {text-decoration:underline;}
+
+.WkstContent .Field.ContentResults div.ResultsHeader label {cursor:pointer;}
+.WkstContent .Field.ContentResults .Folder {cursor:pointer;}
+.WkstContent .Field.ContentResults .File {cursor:pointer;}
+
+.WkstContent .Field.ContentResults.Dashboard .Widget[draggable='true'] {cursor:move;}
+.WkstContent .Field.ContentResults.Dashboard .Widget.dropTarget table {pointer-events:none;}
+.WkstContent .Field.ContentResults.Dashboard .Widget table caption .expandDetails, 
+.WkstContent .Field.ContentResults.DashboardWidgetResults table caption .ReturnToDashboard {cursor:pointer;}
+
+/* Titan Admin - Background Job History */
+.WkstContent .Field.ContentResults .JobStatus tr,
+.WkstContent .Field.ContentResults .ExecutionHistory tr {cursor:unset;}
+
+.Field.ContentResults .JobStatus a[data-task-id],
+.Field.ContentResults .ExecutionHistory a[data-run-id] {cursor:pointer;}
+
+.Field.ViewItems .ViewItem .header .icons svg {cursor:pointer;}
+.Field.ViewItems .ViewItem .header,
+.Field.ViewItems .ViewItem .info,
+.Field.ViewItems .ViewItem .content {user-select:none;}
+
+.Field.BlockItems .BlockItem[draggable='true'] .header {cursor:move;}
+.Field.BlockItems .BlockItem .header .icons.caretDown:after,
+.Field.BlockItems .BlockItem .header .icons:last-child svg {cursor:pointer;}
+.Field.BlockItems .BlockItem .header,
+.Field.BlockItems .BlockItem .info,
+.Field.BlockItems .BlockItem .content {user-select:none;}
+.Field.BlockItems .BlockItem.changed .header .icon.changed {cursor:default;}
+
+.BlockCopyItem {user-select:none; cursor:pointer;}
+
+.WkstContent .TabContent details summary {cursor:pointer; user-select:none; outline:none;}
+.WkstContent .AdminItem .header .icons.caretDown,
+.WkstContent .AdminItem .header .icons svg {cursor:pointer;}
+.WkstContent .AdminItem .header,
+.WkstContent .AdminItem .content {user-select:none;}
+.WkstContent .AdminItem.changed .header .icon.changed {cursor:default;}
+
+.TabNav nav li {cursor:pointer;}
+.TabNav nav li span {user-select:none;}
+.TabNav summary {cursor:pointer; user-select:none; outline:none;}
+
+.DialogEditor {user-select:none;}
+
+.DialogEditor .WkstNotice.XMLDisplay > div {user-select:text;}
+
+.DialogEditor .footer label {cursor:pointer;}
+
+.DialogEditor svg.icon.uploading,
+.DialogEditor svg.icon.removed {cursor:default;}
+
+.DialogEditor ul.ResultsTabs li.tab {user-select:none; cursor:pointer;}
+.DialogEditor .Field.ContentResults.Results + ul.ResultsTabs li.tab[data-tab="Results"],
+.DialogEditor .Field.ContentResults.Report + ul.ResultsTabs li.tab[data-tab="Report"],
+.DialogEditor .Field.ContentResults.Errors + ul.ResultsTabs li.tab[data-tab="Errors"] {cursor:initial; pointer-events:none;}
+
+.DialogInner .ViewOptions label {cursor:pointer; user-select:none;}
+
+.ContentExplorer .Main .view svg {cursor:pointer; pointer-events:all;}
+.ContentExplorer .Main .resultItem {cursor:pointer;}
+.ContentExplorer .Results th[data-sort-alias] {cursor:pointer; user-select:none;}
+
+.LinkEditor .LinkTypeEditors .resultItem {cursor:pointer; user-select:none;}

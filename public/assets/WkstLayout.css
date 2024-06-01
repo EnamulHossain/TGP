@@ -1,0 +1,1593 @@
+﻿@import url("/css/fonts/montserrat.css");
+@import url("/css/fonts/open-sans.css");
+
+:root.Wkst, :root.titanDisplay .Wkst {
+    /* z-indexes */
+    --z-main:1;
+    --z-sticky-content:10;      /* content that can sit above normal content (e.g. header row on tables with sticky headers, bubble messages) */
+    --z-menus:50;               /* ui elements that have to overlay content */
+    --z-fuzzy-cover:9999;       /* the modal cover - very high to support display also */
+    --z-fuzzy-content:10000;    /* any modal ui elements (e.g. dialogs, menus that deactivate when you click off them) */
+    --z-last-dialog:20000;      /* for nested dialogs; the :last-child dialog sits on top */
+    --z-max:100000;             /* artificial max; if we use the vars then it should be easier to manage */
+}
+
+html.Wkst, .Wkst body {height:100%; margin:0; padding:0; overflow:hidden; min-width:1024px;}
+
+.Wkst body {z-index:var(--z-main);}
+
+.Wkst * {box-sizing:border-box;}
+.Wkst svg {width:100%;} /* Edge needed this */
+.Wkst img {max-width:100%;}
+
+.Wkst .hide {display:none;}
+.Wkst .invisible {visibility:hidden;}
+.Wkst .about {display:flex; flex-direction:column; flex:1; align-items:center; width:100%; margin:5% auto;} 
+
+.Wkst input[type="text"],
+.Wkst input[type="date"],
+.Wkst input[type="time"],
+.Wkst input[type="number"],
+.Wkst input[type="password"],
+.Wkst input[type="email"],
+.Wkst input[type="tel"],
+.Wkst input[type="file"] + span.input {height:37px; width:100%; padding:2px 15px 0 15px;}
+.Wkst input[type="date"],
+.Wkst input[type="time"],
+.Wkst input[type="number"] {padding:2px 0 0 15px;}
+.Wkst select {height:37px; width:100%; padding:0 0 0 15px;}
+.Wkst select[multiple] {height:auto;}
+.Wkst select option {padding:0.5rem;}
+
+/* Chrome fix - spinner wasn't automatically taking up full height of input */
+.Wkst input[type="date"]::-webkit-inner-spin-button,
+.Wkst input[type="time"]::-webkit-inner-spin-button {height:100%;}
+
+.Wkst input[type="checkbox"],
+.Wkst input[type="radio"] {height:18px; width:18px; flex-shrink:0;}
+
+.Wkst button.link:not(.wkstButton) {display:inline-flex; align-items:center; margin-right:15px;}
+.Wkst button.link:not(.wkstButton) > svg {margin-right:5px;}
+
+.Wkst input[type="submit"].wkstButton,
+.Wkst input[type="button"].wkstButton,
+.Wkst button.wkstButton,
+.Wkst label.menuButton,
+.Wkst .Field .body label.menuButton {display:inline-block; height:35px; padding:2px 20px;}
+
+.Wkst input[type="submit"].wkstButton,
+.Wkst input[type="button"].wkstButton,
+.Wkst button.wkstButton {display:inline-flex; align-items:center; justify-content:center;}
+
+.Wkst div.login-form {width:400px; margin:15% auto;}
+.Wkst .WkstDialog div.login-form {width:calc(400px + 8rem); padding:4.0rem;}
+
+.Wkst div.login-form svg {margin:0 5% 30px 15%; width:80%;}
+.Wkst div.login-form div {margin:0px auto; position:relative;}
+.Wkst div.login-form input + label {padding:0 5px; position:relative; top:-28px; left:10px; transition:top 250ms ease 0ms, background-color 100ms ease 100ms;}
+
+.Wkst div.login-form input:valid + label, 
+.Wkst div.login-form input:focus + label {top:-47px;}
+
+.Wkst div.login-form .field-validation-error {position:absolute; display:inline-flex; left:100%; bottom:50%; padding:5px 10px; margin-left:15px; width:250px;}
+.Wkst div.login-form .field-validation-error:after {position:absolute; right:100%;}
+.Wkst div.login-form .validation-summary-errors {margin-top:20px; padding:5px 10px;}
+.Wkst div.login-form .validation-summary-errors ul {padding:0; list-style:none;}
+.Wkst div.login-form a {float:right; margin-top:12px;}
+
+.Wkst .WkstHeader {height:70px; display:flex;}
+.Wkst .WkstSearch {height:50px; display:flex; flex-wrap:wrap; flex-direction:row;}
+.Wkst .WkstMain {height:calc(100% - 120px); display:flex;}
+.Wkst .WkstTree {min-width:40px; width:232px; flex:1; order:1;}
+.Wkst .WkstResizeH {padding:0; width:11px; order:2; min-width:11px; max-width:11px;}
+.Wkst .WkstResizeH[data-order='2']{order:2;}
+.Wkst .WkstResizeH[data-order='4']{order:4;}
+.Wkst .WkstContent {width:calc(100% - 243px); order:3; padding:20px 40px 0 10px; overflow-x:auto;}
+
+.WkstHeader .AppsMenu {height:inherit; order:1;}
+.WkstHeader div + div {margin-left:30px;}
+.WkstHeader .ActionButtons {display:flex; align-self:center; order:2; position:relative;}
+
+.WkstHeader .Tabs {height:inherit; order:3;}
+
+.WkstHeader .Tabs ul[data-sticky="1"] li.current:not(.sticky):hover,
+.WkstHeader .Tabs ul[data-sticky="1"] li.current.sticky {position:relative;}
+.WkstHeader .Tabs ul[data-sticky="1"] li.current:not(.sticky):hover:before,
+.WkstHeader .Tabs ul[data-sticky="1"] li.current.sticky:before {position:absolute; top:0; left:0;}
+
+.WkstHeader .Tabs ul li[data-controller="UserProfile"] svg.icon,
+.WkstHeader .Tabs ul li[data-controller="UserAccountInfo"] svg.icon {transform: scale(.9);}
+@media(max-width:1279px) {
+    .WkstHeader .Tabs li.iconMenu + li[data-controller] {display:none;}
+}
+.WkstHeader .Utilities {text-align:right; order:4; flex:2; margin-right:30px; align-self:center;}
+
+.Wkst .fuzzyCover {display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:var(--z-fuzzy-cover);}
+
+.Wkst #sprite.fuzzyCover {display:block;}
+.Wkst input[type="checkbox"].menuOpener {display:none;}
+.Wkst input[type="checkbox"].menuOpener ~ .menu {display:none;}
+.Wkst input[type="checkbox"].menuOpener:checked ~ .menu {display:block;}
+.Wkst input[type="checkbox"].menuOpener:checked ~ label.fuzzyCover {display:block;}
+
+.WkstHeader ul {margin:0; padding:0;}
+.WkstHeader ul li {display:inline-block; width:90px; height:70px; text-align:center;}
+.WkstHeader ul li.iconMenu {position:relative;}
+.WkstHeader ul li label {width:100%; height:100%; display:block;}
+.WkstHeader ul li span {text-decoration:none; vertical-align:middle; height:30px;}
+.WkstHeader ul li span:first-child {display:flex; height:40%; margin-top:12px;}
+.WkstHeader .menu {padding:2px; position:absolute; z-index:var(--z-fuzzy-content);}
+.WkstHeader .menu ul {width:280px;}
+.WkstHeader .menu ul li {width:90px; height:70px; text-align:center;}
+
+.AppsMenu .menu ul {width:300px;}
+.AppsMenu .menu ul li {width:100px;}
+
+.AppsMenu ul {height:inherit;}
+.AppsMenu ul li {text-align:left;}
+.WkstHeader .AppsMenu ul li.iconMenu {width:104px;}
+.WkstHeader .AppsMenu ul li label span {height:100%; padding:0 39px; margin:0;}
+
+label.menuButton + div.menu {padding:2px; position:absolute; z-index:var(--z-fuzzy-content); width:220px; margin-top:10px;}
+label.menuButton + div.menu:before {position:absolute; top:-14px;}
+label.menuButton + div.menu:after {position:absolute; top:-12px;}
+label.menuButton + div.menu ul {width:auto; margin:0; padding:0;}
+label.menuButton + div.menu ul li {display:block; margin-bottom:2px; height:35px; width:auto;}
+label.menuButton + div.menu li.separator {height:5px;}
+label.menuButton + div.menu button {width:100%; height:100%; margin:0; padding:0;}
+label.menuButton + div.menu button span {display:inline-flex; margin-top:7px; height:100%; vertical-align:middle;}
+label.menuButton + div.menu button span:first-child:not(:last-child) {width:46px;}
+label.menuButton + div.menu button span svg.icon {height:20px; width:100%;}
+
+label.menuButton + div.menu.mega {width:calc(90% - 80px); max-width:50vw; height:300px; max-height:50vh; padding:0;}
+label.menuButton + div.menu.mega > ul {width:100%; height:100%; display:flex; flex-direction:row; flex-wrap:wrap; user-select:none; padding:5px 20px; overflow:auto;}
+label.menuButton + div.menu.mega > ul > li {height:auto; margin-bottom:25px; flex:1;}
+label.menuButton + div.menu.mega > ul > li.SystemBlocks {margin-right:20px;}
+label.menuButton + div.menu.mega > ul > li.Tools {}
+label.menuButton + div.menu.mega > ul ul {display:block; column-gap:10px;}
+label.menuButton + div.menu.mega > ul > li.SystemBlocks ul {column-width:auto; column-count:3;}
+label.menuButton + div.menu.mega > ul ul li {margin-left:5px; padding:2px 0; height:auto; page-break-inside:avoid;}
+label.menuButton + div.menu.mega > ul ul li.subHeading {margin:10px 0 0 5px; display:block; column-span:all;}
+label.menuButton + div.menu.mega > ul ul li.default {display:none; column-span:all;}
+label.menuButton + div.menu.mega > ul ul li.default:first-child:last-child {display:block;}
+label.menuButton + div.menu.mega button {white-space:nowrap;}
+label.menuButton + div.menu.mega button span {margin:3px 5px;}
+
+label.menuButton + div.menu.mega button[data-tool] {display:flex; flex-direction:row; flex-wrap:wrap; padding:1.5rem; margin-top:0.5rem;}
+label.menuButton + div.menu.mega button[data-tool] svg.icon {width:32px; height:32px; flex:1 0 32px; margin-top:0.5rem; margin-right:1.5rem;}
+label.menuButton + div.menu.mega button[data-tool] div {flex:0 1 calc(100% - 50px);}
+label.menuButton + div.menu.mega button[data-tool] p {white-space:normal; margin:0;}
+label.menuButton + div.menu.mega button[data-tool] p:not(:last-child) {margin-bottom:1.5rem;}
+
+@media (min-width:1280px) {
+	label.menuButton + div.menu.mega > ul > li.SystemBlocks ul {column-count:4;}
+}
+@media (min-width:1400px) {
+	label.menuButton + div.menu.mega > ul > li.SystemBlocks ul {column-count:2;}
+}
+@media (min-width:1600px) {
+    label.menuButton + div.menu.mega > ul > li.SystemBlocks ul {column-count:3;}
+}
+
+.ActionButtons button:first-child {margin-right:15px;}
+.ActionButtons button.withMenu {padding-right:15px;}
+.ActionButtons label.menuButton {position:relative; margin:0 15px 0 0; padding:0; width:27px;}
+.ActionButtons label.menuButton:after {position:absolute; top:43%; left:6px;}
+.ActionButtons label.menuButton + div.menu {top:35px; left:0;}
+.ActionButtons label.menuButton + div.menu:before {right:8px;}
+.ActionButtons label.menuButton + div.menu:after {right:10px;}
+
+.Utilities li {position:relative;}
+.Utilities label.menuButton {padding:0;}
+.Utilities label.menuButton + div.menu {right:0; width:max-content;}
+.Utilities label.menuButton + div.menu:before {right:8px;}
+.Utilities label.menuButton + div.menu:after {right:10px;}
+
+.Tabs ul li label {display:inline-block; padding:0;}
+.Tabs ul li label svg + span {vertical-align:middle; height:30px;}
+.Tabs .menu {width:364px; right:0;}
+.Tabs .menu ul {width:auto; text-align:left;}
+.Tabs li span {position:relative;}
+.Tabs li span svg.overlay {position:absolute; top:10px; right:25px; width:20px; height:20px;}
+
+.ImageEditor .Tabs {}
+.ImageEditor .Tabs ul {margin:0; padding:0; list-style:none; display:flex; align-items:flex-start;}
+.ImageEditor .Tabs ul li {min-width:90px; text-align:center; padding:20px 0; margin-left:10px; flex:0 1 auto;}
+.ImageEditor .Tabs ul li label {left:unset; top:unset; padding:0;}
+.ImageEditor .Tabs ul li.ImageName {flex:1; text-align:right; margin-right:10px;}
+.ImageEditor .Tabs ul li.ImageName strong {margin-right:10px;}
+
+.ImageEditor .Field > .body {width:100%; flex-basis:auto;}
+.ImageEditor .EditOptions {display:flex; flex-direction:column; flex:0 0 30%; margin-right:15px;}
+.ImageEditor .EditOptions > div {display:none; flex-direction:column; margin-bottom:15px;}
+.ImageEditor .EditOptions > div:last-child {margin-top:20px;}
+.ImageEditor .EditOptions.Resize > div.Resize,
+.ImageEditor .EditOptions.Crop > div.Crop,
+.ImageEditor .EditOptions.Rotate > div.Rotate {display:flex;}
+
+.ImageEditor .EditOptions.Rotate > div.Rotate {flex-direction:row; flex-wrap:wrap;}
+
+.ImageEditor .EditOptions .Constrain {display:flex; align-items:center; height:28px;}
+.ImageEditor .EditOptions .Constrain input[type="checkbox"],
+.ImageEditor .EditOptions .Constrain svg.icon {margin-right:5px;}
+.ImageEditor .EditOptions .Constrain input[type="checkbox"]:not(:checked) {margin-right:36px;}
+.ImageEditor .EditOptions .Constrain input[type="checkbox"]:not(:checked) + svg.icon {display:none;}
+
+.ImageEditor .ImagePreview {display:flex; flex-direction:column; flex:0 0 calc(70% - 15px); overflow:auto;}
+
+.ImageEditor .ImageViewer {height:350px; overflow:auto; position:relative;}
+.ImageEditor .ImageViewer + .flex {height:60px;}
+.ImageEditor .ImageViewer .OriginalImage {width:893px; height:653px; max-width: unset;}
+.ImageEditor .ImageViewer .OriginalImage:not(.hide) {display:block;}
+.ImageEditor .ImageViewer .fuzzyCover {position:absolute;}
+.ImageEditor .ImageViewer .fuzzyCover:not(.hide) {display:block;}
+.ImageEditor .cropper {width:100px; height:73px; position:absolute; top:0; left:auto; z-index:var(--z-max); overflow:hidden;}
+.ImageEditor .cropper .resize {height:8px; width:8px; margin:-4px 0 0 -4px; position:absolute;}
+.ImageEditor .cropper .e-resize {top:50%;left:100%;}
+.ImageEditor .cropper .w-resize {top:50%;left:0;}
+.ImageEditor .cropper .n-resize {left:50%;}
+.ImageEditor .cropper .s-resize {top:100%;left:50%;}
+.ImageEditor .cropper .ne-resize {left:100%;}
+.ImageEditor .cropper .nw-resize {}
+.ImageEditor .cropper .sw-resize {top:100%;}
+.ImageEditor .cropper .se-resize {top:100%;left:100%;}
+.ImageEditor .ImageViewer .cropper #viewImage {position:absolute;max-width:unset;}
+.ImageEditor .buttons button.icon {padding:2px 10px;}
+.ImageEditor .TabContent {display:flex; flex-direction:column; flex:1; height:100%; width:30%; align-self:stretch;}
+.ImageEditor .TabContent > div:not(.Field) {flex-basis:100%;}
+.ImageEditor .TabContent[data-tab="RotateImage"] {flex-direction:row; flex-wrap:wrap;}
+.ImageEditor .TabContent.hide {display:none;}
+.ImageEditor button.rotate {width:30%; height:60px;}
+.ImageEditor button.rotate .icon {width:100%; height:100%;}
+
+svg.overlay {display:none;}
+:not(.disabled).error svg.overlay.error,
+:not(.disabled).changed svg.overlay.changed {display:block;}
+
+.Utilities ul li {width:40px; height:auto;}
+.Utilities ul li a {padding: 26px 0;}
+.Utilities ul li a span:first-child,
+.Utilities ul li a span {margin:0;}
+.Utilities svg {height:20px;}
+
+.WkstSearch {position:relative;}
+.WkstSearch .button {position:relative; width:90px; height:80%; align-self:center; flex:0 0 auto;}
+.WkstSearch .button > span,
+.WkstSearch .button label.caretDown {width:100%; height:100%; display:flex; flex-direction:row-reverse; align-items:center; justify-content:center;}
+.WkstSearch .button > span:after {margin-right:12px;}
+.WkstSearch .button label.caretDown:after {margin-top:6px;}
+.WkstSearch .button svg {height:21px;}
+.WkstSearch .button .menu {width:425px; top:28px; left:10px; padding:10px;}
+.WkstSearch .button .menu:before {left:12px;}
+.WkstSearch .button .menu:after {left:14px;}
+.WkstSearch .button .menu .Field .body {width:90%;}
+.WkstSearch .input {height:80%; align-self:center; flex:1 0 auto;}
+.WkstSearch .input .searchcrumb {display:flex; height:37px; width:calc(100% - 15px);}
+.WkstSearch .input .searchcrumb span.crumb {margin-left:1rem;}
+.WkstSearch .input .searchcrumb ul {margin:0; padding:0; list-style:none;}
+.WkstSearch .input .searchcrumb li {height:100%; display:inline-flex;}
+.WkstSearch .input .searchcrumb li.hide {display:none;}
+.WkstSearch .input .searchcrumb li span {height:calc(100% - 4px); margin:2px 0; padding:5px 5px 5px 0; display:flex; flex-wrap:nowrap; align-items:center;}
+.WkstSearch .input .searchcrumb > ul > li > span {margin-left:5px; padding-left:5px;}
+.WkstSearch .input .searchcrumb li svg {height:21px; width:21px; margin:0 5px 0 0;}
+.WkstSearch .input .searchcrumb ul ul:not(.filters) li svg {height:10px; width:10px;}
+
+.WkstSearch .input .search {width:calc(100% - 15px);}
+.WkstSearch .input:not(.searchcrumb) > .searchcrumb,
+.WkstSearch .input:not(.search) > .search {display:none;}
+
+.WkstSearch .suggestions:not(:empty) {width:100%; position:absolute; top:100%; z-index:var(--z-menus);}
+.WkstSearch .suggestions ul {margin:5px 0 10px 90px; padding:0; display:inline-table; width:calc(100% - 90px);}
+.WkstSearch .suggestions li {margin:0; padding:0; height:33px; width:100%; overflow:hidden; list-style:none;}
+.WkstSearch .suggestions li > span {display:flex; align-items:flex-start; height:31px; margin:0; padding:5px 15px 5px 0;}
+.WkstSearch .suggestions li > span > span {flex:2; margin-right:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.WkstSearch .suggestions li > span > span:last-child {flex:1;}
+.WkstSearch .suggestions li svg {width:21px; height:21px; margin:0 10px;}
+
+.WkstTree nav {height:calc(100% - 42px); overflow:auto;}
+.WkstTree nav ul,
+.WkstTree nav ul li {display:block; position:relative; margin:0; padding:0;}
+.WkstTree nav ul li span {display:flex; height:31px; margin:0; padding:5px 15px 5px 35px; align-items: center;}
+.WkstTree nav ul {width:100%;}
+.WkstTree nav > ul {display:inline-table;} 
+.WkstTree nav ul ul {padding-left:20px;}
+.WkstTree nav ul li {height:33px; min-height:33px; width:100%; overflow:hidden; list-style:none;}
+.WkstTree nav ul li.open {height:auto;}
+.WkstTree nav ul li.open > ul li {display:block;}
+.WkstTree nav ul li:not(.open) > ul li {display:none;}
+.WkstTree nav li span svg {display:block; min-width:21px; width:21px; max-height:21px; margin-right:12px;}
+.WkstTree nav li span + ul:before {display:inline-flex; place-items:center normal; position:absolute; left:15px; bottom:calc(100% - -4px); width:21px; height:21px;}
+
+.WkstTree svg.logo {height:30px; width:auto; margin:0.5rem 1.1rem;}
+
+.Wkst .WkstNotice {padding:10px 20px; margin-bottom:15px; width:100%;}
+.Wkst .WkstNotice h3 {margin-bottom: 0;}
+.Wkst .WkstNotice.guide {width:auto; display:flex; flex-direction:column;}
+.Wkst .WkstNotice.guide div {display:flex; flex-direction:row; align-items:flex-start; flex:1 0 calc(100% - 50px); padding:5px; width:100%; flex-wrap:wrap;}
+.Wkst .WkstNotice.guide div div {flex-direction:column;}
+.Wkst .WkstNotice.guide svg {width:32px; height:32px; margin-top:5px; margin-right:15px; flex:0 1 32px;}
+.Wkst .WkstNotice.guide p {margin:0 0 10px 0;}
+.Wkst .WkstNotice.guide label.menuButton {padding-top:8px;}
+.Wkst .WkstNotice.XMLDisplay p {white-space:pre;}
+
+.Wkst *[data-state] > .loading {position:absolute; top:10%; left:0; right:0; display:none; margin:10% auto; text-align:center; vertical-align:middle; z-index:var(--z-max);}
+.Wkst *[data-state="loading"] > :not(.loading) {display:none;}
+.Wkst *[data-state="loading"] > .loading {display:block;}
+.Wkst *[data-state="loading"] > .loading + .DialogEditor {display:flex;}
+.Wkst *[data-state="loading"] .TabContent {display:none;}
+
+.flex {display:flex; align-items:center;}
+.flexStart {display:flex; align-items:flex-start;}
+.flexEnd {display:flex; align-items:flex-end;}
+.flexStretch {display:flex; align-items:stretch;}
+.flexNone {flex:none;height:auto;}
+.flexFill {flex: 2;}
+.justifyStart {justify-content:flex-start;}
+.justifyEnd {justify-content:flex-end;}
+.column {flex-direction:column;}
+.row {flex-direction:row;}
+.block {display:block;}
+.fullWidth {width:100%;}
+.autoMargin {margin:auto;}
+
+.w20 {width:20%;}
+.w25 {width:25%;}
+.w30 {width:30%;}
+.w33 {width:33.33%;}
+.w40 {width:40%;}
+.w50 {width:50%;}
+.w60 {width:60%;}
+.w70 {width:70%;}
+.w80 {width:80%;}
+.floatRight {float:right;}
+.floatLeft {float:left;}
+
+.right {text-align:right;}
+.center {text-align:center;}
+.adminLink {margin-left:26px; width:auto; /* fit-content */}
+
+.Wkst h4.FieldHeading {display:flex; flex-direction:row; align-items:flex-start; justify-content:space-between; padding:2px; width:100%;}
+.Wkst h4.FieldHeading.FileTools {height:37px; white-space:nowrap;}
+.Wkst .mega h4.FieldHeading {margin:0;}
+
+.Field {display:flex; align-items:center; padding-bottom:1.5rem;}
+.Field.slim {padding-bottom:0;}
+
+.WkstNotice:first-child {margin-top:10px;}
+
+.Field .flex .w30 {min-width:200px;}
+
+.Field .border {padding:5px 10px;}
+
+.Field .multi {width:26px; position:relative; top:15px;}
+.Field.Grouping .body .multi {display:none;}
+.Field .body {width:70%;}
+.Field.Grouping > .body {width:100%;}
+.Field .msg {display:flex; flex:1 0 auto; align-self:flex-start; position:relative;}
+
+@media(max-width:1279px) {
+    .Field.Grouping .body .multi + .body {width:calc(100%);}
+}
+.Field svg.icon {width:26px; height:26px;}
+
+.Field .circle-icon {display:inline-block; width:35px; height:35px; padding:9px; margin-right:10px; text-align:center;}
+.Field .circle-icon svg {width:100%; height:100%;}
+
+.Field label.help svg.icon {width:19px; height:19px;}
+
+.Field td.msg {overflow:visible;}
+.Field > .msg svg.icon {width:20px; height:20px; min-width:20px; min-height:20px; margin-right:10px;}
+.Field > .msg .bubble {position:absolute; display:inline-flex; padding:5px 10px; margin-left:1.5rem; flex-basis:100%; width:auto; white-space:pre-line;}
+.Field > .body.hasLabel + .msg > .bubble {top:19px;}
+.Field > .msg .bubble span {width:100%; overflow:hidden; text-overflow:ellipsis;}
+.Field > .msg .bubble p {margin:0; padding:0;}
+.Field > .msg .bubble.left {top:auto; right:100%; margin:0;}
+.Field > .msg .bubble:after {position:absolute; right:100%;}
+.Field > .msg .bubble.left:after {right:unset; left:100%; top:0;}
+
+@media (max-width:1279px) {
+    .Field > .body {width:calc(100% - 26px);} 
+    .Field > .msg {flex:0 0 auto;}
+    .Field > .msg:before {height:0; flex-basis:100%;}
+    .Field > .msg .bubble {position:relative; top:8px; left:26px; margin:0; width:100%; max-width:unset; display:none; white-space:normal; z-index:var(--z-sticky-content);}
+    .Field > .body.hasLabel + .msg > .bubble {top:8px;}
+
+    .Field > .msg .bubble:after {right:unset; bottom:100%;}
+    li.inline .Field > .msg .bubble {margin-left:15px;}
+    li.inline .Field > .msg .bubble:after {right:100%; bottom:unset;}
+    
+    .Field.changed,
+    .Field.error {flex-wrap:wrap;}
+    li.inline .Field.changed,
+    li.inline .Field.error {flex-wrap:nowrap;}
+    .Field.changed > .msg .bubble.changed,
+    .Field.error > .msg .bubble.error {display:flex;}
+    .Field.changed td.msg,
+    .Field.error td.msg {overflow:visible;}
+}
+
+
+.Field .body input[type="text"].hidden {display:none;}
+.Field .body textarea {min-width:100%; max-width:100%; min-height:37px; max-height:100%; padding:9px 15px; }
+.Field .body select {width:100%; padding:0 0 0 15px;}
+
+.Field .body label {padding:0 5px; position:relative; top:8px; left:10px; white-space:nowrap; align-self:flex-start; }
+.Field .body input + label {top:unset; left:unset; line-height:24px;}
+.Field .body label.fuzzyCover {position:fixed; top:0; left:0; padding:0;}
+.Field .body span.flex label.menuButton {top:0;}
+.Field .body label.help {padding:0 5px 0 0; position:relative; top:11px; left:6px;}
+
+.Field .body label .help svg {position:absolute; top:0; width:20px; height:20px;}
+.Field .body label .help:not(.closed) + span {padding-left:25px;}
+
+.Field .body .help label {display:flex; align-items:center; top:0; margin-bottom:5px;}
+.Field .body .help label svg {top:auto; width:20px; height:20px;}
+.Field .body .help p {display:block; margin-block:1rem;}
+
+.Field .body .help.closed,
+.Field.disabled .body div.help:not(.closed) {display:none;}
+.Field .body .help div label {padding:0px; position:inherit;}
+.Field .body .help div div {margin-left:15px;}
+.Field .body .help label span {padding: 0px 5px;}
+.Field .body .help .textColor li {flex-wrap:wrap;}
+.Field .body .help .textColor li span:first-child {width:50px; flex-shrink:0;}
+.Field .body .help li.flex {display:flex; flex-basis:auto;}
+.Field .body .help ul {margin: 10px auto 0px auto;}
+.Field .body .help ul li {padding-bottom:5px;}
+.Field .body .help ul ul li {flex-basis:33%; min-height:22px;}
+.Field .body .box.help > div {flex-basis:100%; padding:10px;}
+
+.Field .body .help > div code {display:flex; width:80%; margin:15px; }
+.Field .body .help > div dl {margin:0 15px}
+.Field .body .help > div dt {}
+.Field .body .help > div dd {margin:2px 0 8px 10px;}
+
+.Field .body .help > div dl.tabular {display:flex; flex-direction:row; flex-wrap:wrap;}
+.Field .body .help > div dl.tabular dt {width:30%; flex:1 0 auto;}
+.Field .body .help > div dl.tabular dd {width:60%; flex:1 0 auto;}
+
+.Field .body span.flex:not(:last-child) {margin-bottom:10px;}
+.Field .body span.flex svg {margin:5px 0 0 5px;}
+.Field .body span.flex span svg {margin-top:24px;}
+
+.Field .body .wkstButton:not(:first-child) {margin-left:15px;}
+
+.Field .body span.data-mover input[type="checkbox"] {width:auto; height:auto;}
+.Field .body span.data-mover > label {top:-2px;line-height:initial;}
+
+.Field.ButtonToolbar button {margin-left:26px;}
+
+.Field .body ul.cmscontrols {padding:0; margin:0; list-style:none; display:flex; flex-direction:column; flex:1 0 100%; align-items:flex-start;}
+.Field .body > label + ul.cmscontrols {margin-top:1.5rem;}
+.Field .body ul.cmscontrols > li {min-height:15px; width:100%;}
+.Field .body ul.cmscontrols > li.subitem {margin-left:4rem; width:calc(100% - 4rem);}
+.Field .body ul.cmscontrols > li.subsubitem {margin-left:8rem; width:calc(100% - 8rem);}
+.Field .body ul.cmscontrols > li > .Field {padding-bottom:1rem;}
+.Field .body ul.cmscontrols.slim > li > .Field {padding-bottom:0;}
+.Field .body ul.cmscontrols > li > .Field > .multi {display:none;}
+.Field .body ul.cmscontrols > li > .Field > .body {}
+.Field .body ul.cmscontrols > li > .Field > .msg {}
+
+.Field .body ul.cmscontrols > li > .Field.CmsCheckableItems ul li {margin-right:unset; height:auto; width:auto;}
+
+.Field .body ul.cmscontrols > li.inline {display:flex; flex-direction:row; flex-wrap:nowrap; flex:0 1 auto; align-items:flex-end;}
+.Field .body ul.cmscontrols > li.inline > .Field:not(:last-child) {margin-right:var(--dim-single-space);}
+.Field .body ul.cmscontrols > li.inline > .Field:last-child.error .msg .bubble.changed,
+.Field .body ul.cmscontrols > li.inline > .Field:not(:last-child).error ~ .Field:last-child .msg .bubble.changed,
+.Field .body ul.cmscontrols > li.inline > .Field:not(:last-child) .msg .bubble {display:none;}
+
+.Field .body ul.cmscontrols > li.inline > .Field > .body {flex:1 0 100%;}
+.Field .body ul.cmscontrols > li.inline > .Field > .msg > .bubble {white-space:nowrap;}
+.Field .body ul.cmscontrols > li.inline > .Field > .body.hasLabel + .msg > .bubble {top:0;}
+
+.Field .body ul.cmscontrols > li.inline > .Field.CmsCheckableItems ul li {min-width:unset;}
+.Field .body ul.cmscontrols > li.inline > .Field.CmsCheckableItems ul li > label {white-space:nowrap;}
+.Field .body ul.cmscontrols > li.inline > .Field.CmsCheckableItems .body + .msg > .bubble {top:0;}
+
+@media(max-width:1279px) {
+    .Field .body ul.cmscontrols > li.inline > .Field > .body {flex:0 1 auto;}
+}
+
+.Field .body ul.cmscontrols > li.labelLeft > .Field > .body.hasLabel {display:flex; flex-direction:row;}
+.Field .body ul.cmscontrols > li.labelRight > .Field > .body.hasLabel {display:flex; flex-direction:row-reverse;}
+.Field .body ul.cmscontrols > li.labelLeft > .Field > .body.hasLabel > label,
+.Field .body ul.cmscontrols > li.labelRight > .Field > .body.hasLabel > label {left:0;}
+
+.Field .body ul.cmscontrols > li.smallText > .Field > .body input[type="text"],
+.Field .body ul.cmscontrols > li.smallText > .Field > .body input[type="number"] {width:100px;}
+
+.Field .body ul.auto > li {width:auto;}
+
+.Field.Grouping ul.items {padding:0; margin:0; list-style:none;}
+.Field.Grouping ul.items li > .Field {padding-bottom:0;}
+
+.Field.Grouping ul.items.buttons,
+.Field.Grouping.List .body > label + .Field {margin-top:1.5rem;}
+
+.Field.Grouping ul.items.buttons > li {margin-bottom:1.5rem;}
+
+.Field.Grouping ul.tabular {width:50%;}
+@media (max-width:1279px) {
+    .Field.Grouping ul.tabular {width:100%;}
+}
+.Field.Grouping ul.tabular li {display:flex; align-items:flex-end; flex-direction:row; flex:0 1 50%; justify-content:space-between; margin-bottom:1rem;}
+
+.Field.Grouping ul.tabular.fullWidth {width:100%;}
+.Field.Grouping ul.tabular.fullWidth li {align-items:center;}
+.Field.Grouping ul.tabular.fullWidth li > span {width:50%;}
+
+
+
+/* Checkboxes and Radios */
+.Field.CmsCheckableItems ul {list-style-type:none; padding:0; margin:0;}
+.Field.CmsCheckableItems ul li > label {white-space:normal;}
+.Field.CmsCheckableItems label + ul {margin-top:1.5rem;}
+.Field.CmsCheckableItems ul li {display:inline-flex; height:37px; padding:7px 15px; margin-right:25px; width:25%; min-width:200px;}
+.Field.Grouping ul.items > li.smallText > .Field.CmsCheckableItems ul li {height:33px;}
+.Field.CmsCheckableItems ul.items.slim > li,
+.Field.CmsCheckableItems ul.items > li.slim {height:30px; min-height:15px;}
+.Field.CmsCheckableItems ul.items li {display:flex; width:auto;}
+.Field.CmsCheckableItems ul.items li.hide {display:none;}
+.Field.CmsCheckableItems ul.auto {display:flex; justify-content:space-between;}
+.Field.CmsCheckableItems ul.auto li {width:auto; display:inherit; padding:15px 0; margin:0;}
+
+.Field.Grouping .Field.CmsCheckableItems > ul.items li,
+.w50 .Field.CmsCheckableItems > ul li {display:flex; width:auto;}
+.Field.CmsCheckableItems ul li:first-child:last-child {width:auto;}
+
+.Field.CmsCheckableItems.DocumentTypeID ul {display:flex;}
+
+.Field.CmsCheckableItems.ActiveState {padding-bottom:0; flex-wrap:nowrap;}
+.Field.CmsCheckableItems.ActiveState ul li {min-width:inherit;}
+.Field.CmsCheckableItems.ActiveState ul li label {line-height:24px;}
+.Field.CmsCheckableItems.ActiveState .msg {display:none;}
+
+.Field.CmsCheckableItems ul.buttons li {height:auto; width:auto; min-width:auto; margin:0; padding-left:0;}
+.Field.CmsCheckableItems ul.buttons li input[type="radio"] {display:none;}
+.Field.CmsCheckableItems ul.buttons li label {min-width:120px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:15px 10px 11px 10px;}
+.Field.CmsCheckableItems ul.buttons > li > .description {margin-left:15px;}
+
+.Field.CmsCheckableItems ul.buttons.hideIfOne li:first-child:last-child {display:none;}
+
+.Field.CmsCheckableItems.ViewCategory ul.buttons li label {white-space:nowrap;}
+
+.radioList .Field.CmsCheckableItems .multi {display:none;}
+.radioList .Field.CmsCheckableItems .body {display:flex; flex-direction:row; flex-wrap:nowrap; flex:1 0 auto;}
+.radioList .Field.CmsCheckableItems .body > label {display:inline; top:0; left:0;}
+.radioList .Field.CmsCheckableItems .msg .bubble {top:0; margin:0;}
+.radioList .Field.CmsCheckableItems ul {display:inline; width:60%; margin:0; padding:0;}
+.radioList .Field.CmsCheckableItems ul li {height:auto; margin:0; padding:0; min-width:unset; justify-content:center; }
+.radioList .Field.CmsCheckableItems ul:not(.head) li label {display:none;}
+
+.radioList.Wkst2Col .Field.CmsCheckableItems .body > label,
+.radioList.Wkst2Col .Field.CmsCheckableItems ul li {width:40%;}
+
+.radioList.Wkst3Col .Field.CmsCheckableItems .body > label,
+.radioList.Wkst3Col .Field.CmsCheckableItems ul li {width:30%;}
+
+/* Span */
+.Field.CmsSpan .body span {padding:15px;}
+.Field.CmsSpan .body label span {padding:0;}
+
+/* ViewPicker */
+.Field.CmsViewPicker {margin:0; padding:0; flex:1 0 auto; height:100%;}
+.Field.CmsViewPicker > .multi,
+.Field.CmsViewPicker > .msg {display:none;}
+.Field.CmsViewPicker > .body {width:100%; display:flex; flex-direction:column; flex-wrap:nowrap;}
+
+/* NavPicker */
+.Field.CmsNavPicker {margin:0; padding:0; height:100%;}
+
+.Field.CmsNavPicker > .multi { display:none; }
+.Field.CmsNavPicker > .body {width:100%; display:flex; flex-direction:column; flex-wrap:nowrap;}
+.Field.CmsNavPicker.error > .body {width:75%;}
+.Field.CmsNavPicker > .body > .FileTools {align-items:center; white-space:nowrap;}
+.Field.CmsNavPicker > .body > .WkstTree {width:100%; max-height:600px;}
+.Field.CmsNavPicker > .body > .WkstTree.ScrollArea {overflow-y:scroll;}
+.Field.CmsNavPicker > .body > .WkstTree nav {overflow:visible;}
+
+.Field.CmsNavPicker nav[data-multi] li > span > input[type="checkbox"] {width:15px; height:15px; margin-right:5px;}
+
+/* Tag Picker */
+.Field.CmsTagsPicker {flex-direction:row; align-items:flex-start;}
+
+#Tags_content .Field.CmsTagsPicker {}
+#DisplaySecurity_content .Field.CmsTagsPicker {max-height:calc(100% - 200px);}
+#WorkstationSecurity_content .Field.CmsTagsPicker {max-height:calc(100% - 380px);}
+
+#Tags_content .Field.CmsTagsPicker .multi,
+#DisplaySecurity_content .Field.CmsTagsPicker .multi,
+#WorkstationSecurity_content .Field.CmsTagsPicker .multi {width:inherit;}
+
+.Field.CmsTagsPicker .body {display:flex; flex-direction:column; width:80%; height:100%; min-height:350px; align-items:flex-start;}
+@media(max-width:1279px) {
+    .Field.CmsTagsPicker .body {width:100%;}
+    .Field.CmsTagsPicker.changed .body,
+    .Field.CmsTagsPicker.error .body {flex:1 0 90%; height:calc(100% - 35px);}
+ }
+
+.Field.CmsTagsPicker ul {padding-left:5px;}
+.Field.CmsTagsPicker li {display:block; padding-left:5px;}
+.Field.CmsTagsPicker li svg {height:20px; margin-right:3px;}
+.Field.CmsTagsPicker .box {min-width:200px;}
+.Field.CmsTagsPicker .box > div {flex-basis:100%; padding:10px;}
+.Field.CmsTagsPicker .box > label {align-self:baseline;}
+.Field.CmsTagsPicker .tagList {margin-top:10px; height:inherit; max-height:500px; width:100%;}
+.Field.CmsTagsPicker .help.closed ~ .tagList {margin-left:-30px;} /* this is because the help span inside the .tagList is forcing the ui off the flex-start */
+.Field.CmsTagsPicker .tagList .help {position:relative; top:7px; left:35px; white-space:nowrap; height:-moz-max-content; height:fit-content;}
+.Field.CmsTagsPicker .tagList .help > label {left:0;}
+.Field.CmsTagsPicker .tagList > div {margin-right:5px;}
+.Field.CmsTagsPicker .tagList > div:first-of-type {margin-right:10px;}
+.Field.CmsTagsPicker .tagList li {display:flex; align-items:center; margin-bottom:2px; height:30px;}
+.Field.CmsTagsPicker .tagList li label {position:inherit; padding:inherit; top:inherit; left:inherit; align-self:inherit;}
+.Field.CmsTagsPicker .tagList .availableTags > label {left:30px;}
+.Field.CmsTagsPicker .tagList .availableTags div,
+.Field.CmsTagsPicker .tagList .selectedAttributes div, 
+.Field.CmsTagsPicker .tagList .availableAttributes ul {overflow-y:auto;}
+.Field.CmsTagsPicker .tagList .availableAttributes .attrControls + ul {height:calc(100% - 95px);}
+.Field.CmsTagsPicker .tagList .availableAttributes div {overflow-y:hidden;}
+.Field.CmsTagsPicker .tagList .availableAttributes svg {display:none;}
+.Field.CmsTagsPicker .tagList .attrControls .counts {justify-content:space-between;}
+.Field.CmsTagsPicker .tagList .editControls .icon {height:20px; width:20px; margin:auto 0px; display:inline;}
+.Field.CmsTagsPicker .tagList .editControls .icon:first-of-type {margin-left:5px;}
+.Field.CmsTagsPicker .moveIcons {justify-content:center; margin:3px 5px 3px 0;}
+.Field.CmsTagsPicker .moveIcons span:first-child {padding-bottom:3px;}
+.Field.CmsTagsPicker .selectedAttributes li {height:auto; flex-direction:column; align-items:baseline;}
+.Field.CmsTagsPicker .selectedAttributes ul ul {width:100%; margin:0; padding:0;}
+.Field.CmsTagsPicker .selectedAttributes li li {height:30px; width:max-content; flex-direction:row; align-items:center; padding-right:3px;}
+.Field.CmsTagsPicker .selectedAttributes .valuesField > li > label {align-self:flex-start;}
+.Field.CmsTagsPicker .selectedAttributes .valuesField > li:not(:first-child) > label {margin-top:10px;}
+.Field.CmsTagsPicker li.hide {display:none;}
+
+/* CKEditor */
+.Field.CmsCKEditor .body .cke {height:100%; margin-top:15px;}
+.Field.CmsCKEditor .body .cke .cke_inner {display:flex; flex-direction:column; height:100%;}
+.Field.CmsCKEditor .body .cke .cke_contents {flex:1 0 auto; display:flex; flex-direction:column;}
+.Field.CmsCKEditor .body .cke .cke_contents .cke_wysiwyg_frame {flex:1 0 auto;}
+.Wkst .cke_panel {width:unset!important;}
+.Wkst .cke_dialog input[type="text"].cke_dialog_ui_input_text {padding:2px 10px 0 10px;}
+.Field.CmsCKEditor .body div[data-ui="Popup"] {padding:1rem; max-height:350px; min-height:150px; overflow:auto scroll;}
+
+/* File Upload */
+.Field.CmsFileUpload {}
+.Field.CmsFileUpload input[type="file"] {width:0.1px; height:0.1px; position:absolute; overflow:hidden;}
+.Field.CmsFileUpload span.input {display:flex; flex-direction:row; align-items:center; margin-bottom:18px; top:0; left:0;}
+.Field.CmsFileUpload span.input label {padding:0; top:inherit; left:inherit;}
+.Field.CmsFileUpload span.fileName {flex:1 0 auto; width:90%; overflow:hidden; text-overflow:ellipsis;}
+
+
+/* SuggestListBox */
+.Field.CmsSuggestListBox {overflow:hidden; align-items:start;}
+.Field.CmsSuggestListBox .body {flex-basis:100%; overflow:hidden; height: 100%;}
+.AdminItem .Field.CmsSuggestListBox .body {flex-basis:auto;}
+
+.Field.CmsSuggestListBox .body .lists {margin-top:10px; overflow:hidden; height: calc(100% - 30px);}
+.Field.CmsSuggestListBox .body .lists .border {display:flex; flex-direction:column; height: calc(100% - 20px);}
+.Field.CmsSuggestListBox .body .lists .border.slim {max-height:200px;}
+.Field.CmsSuggestListBox .body .search {position:relative;}
+.Field.CmsSuggestListBox .body .search input[type="text"] {padding:2px 25px 2px 15px;}
+.Field.CmsSuggestListBox .body .search .icon {display:none;width:17px; height:17px; position:absolute; top:30px; right:12px;}
+.Field.CmsSuggestListBox .body .search.add .icon.add,
+.Field.CmsSuggestListBox .body .search.filter .icon.filter {display:block;}
+
+.Field.CmsSuggestListBox .body .icons {justify-content:center; margin:3px;}
+.Field.CmsSuggestListBox .body ul {padding-left:5px; overflow-y:auto; margin:15px 0 0 0;}
+.Field.CmsSuggestListBox .body ul li {display:flex; align-items:center; margin-bottom:2px; height:30px; padding:0 5px; margin-right:5px; white-space:nowrap;}
+.Field.CmsSuggestListBox .body ul li.hide {display:none;}
+.Field.CmsSuggestListBox .body ul li.groupHeading {height:35px; padding:2px; width:100%; margin-top:15px;}
+.Field.CmsSuggestListBox .body ul li.groupHeading:first-child {margin-top:0;}
+
+.Field.CmsSuggestListBox li[draggable] {transition:transform 0.3s ease-in-out;}
+.Field.CmsSuggestListBox li.dragging {transform:scale(0.9);}
+.Field.CmsSuggestListBox ul {transition:none;}
+
+/* Suggest List in Titan Admin for Css Classes */
+.Field[data-name="CssClasses"] .Field.CmsSuggestListBox ul {height:180px;}
+
+/* CssClassListBox - multi editor for blocks */
+.Field.CmsCssClassesListBox li[draggable] {transition:transform 0.3s ease-in-out;}
+.Field.CmsCssClassesListBox li.dragging {transform:scale(0.9);}
+.Field.CmsCssClassesListBox ul {transition:none;}
+.Field.CmsCssClassesListBox ul.available svg,
+.Field.CmsCssClassesListBox ul.selected:not(.multiEdit) svg {display:none;}
+.Field.CmsCssClassesListBox li svg {height:20px; margin-right:3px;}
+
+/* FileData - preview area on File Content tab */
+.Field.CmsFileData .PreviewInfo {align-items:flex-start; flex-direction:column;}
+.Field.CmsFileData .PreviewInfo .fileName {margin-bottom:15px;}
+.Field.CmsFileData .PreviewInfo .fileName b {margin-right:15px;}
+.Field.CmsFileData .PreviewInfo img {margin-bottom:15px;}
+.Field.CmsFileData .PreviewInfo video {width:100%;}
+.Field.CmsFileData .PreviewInfo .sizeInfo {display:flex; width:70%; flex-direction:column; align-items:stretch;}
+.Field.CmsFileData .PreviewInfo .sizeInfo div {padding:0 8px;}
+.Field.CmsFileData .PreviewInfo ul {width:100%; padding:0 8px; margin:0; list-style:none; max-height:250px; overflow-y:auto;}
+.Field.CmsFileData .PreviewInfo li {display:flex; margin:5px 0;}
+
+/* ConfigCollection */
+.Field.CmsConfigCollection .body {width:80%;}
+.Field.CmsConfigCollection .body .lists {margin-top:10px;}
+.Field.CmsConfigCollection .body .lists .border {height:300px; display:flex; flex-direction:column;}
+.Field.CmsConfigCollection .body .icons {justify-content:center; margin:3px;}
+.Field.CmsConfigCollection .body ul {padding:0 1% 0 5px; height:300px; overflow-y:auto;}
+.Field.CmsConfigCollection .body ul li {display:flex; align-items: center; margin-bottom: 2px; height:30px; padding:inherit; margin-right:5px; white-space:nowrap; overflow:hidden;}
+.Field.CmsConfigCollection .body ul li svg.icon {display:block; width:18px; height:18px; margin:0 5px;}
+.Field.CmsConfigCollection .body ul li span {position:inherit; padding:inherit; width:30%; flex:1 0 auto; overflow-x:hidden; text-overflow:ellipsis;}
+.Field.CmsConfigCollection .body ul li span + span {width:50%;}
+.Field.CmsConfigCollection .body ul li span.subtype {width:auto; text-align:right;}
+.Field.CmsConfigCollection .body ul li span.subtype:not(:empty):before {margin-right:5px;}
+
+@media (max-width:1279px) {
+    .Field.CmsConfigCollection .body {width:calc(100% - 26px);}
+    .Field.CmsConfigCollection .body .flexStretch {flex-direction:column;}
+    .Field.CmsConfigCollection .body .flexStretch .w40,
+    .Field.CmsConfigCollection .body .flexStretch .w60 {width:100%;}
+    .Field.CmsConfigCollection .body .lists .border {height:unset;}
+    .Field.CmsConfigCollection .body .lists ul.available {height:150px;}
+    .Field.CmsConfigCollection .body .icons {display:none;}
+}
+
+.Field.CmsConfigCollection .body ul li.hide,
+.Field.CmsConfigCollection .body ul li.disallow {display:none;}
+
+.Field.CmsConfigCollection .body ul.available li svg.icon,
+.Field.CmsConfigCollection .body ul.available li span:first-of-type,
+.Field.CmsConfigCollection .body ul.selected li.NoName span:first-of-type,
+.Field.CmsConfigCollection .body ul.selected li span.subtype,
+.Field.CmsConfigCollection .body ul.selected li.deleted svg:not(.restore),
+.Field.CmsConfigCollection .body ul.selected li:not(.deleted) svg.restore {display:none;}
+
+.Field.CmsConfigCollection li[draggable] {transition:transform 0.3s ease-in-out;}
+.Field.CmsConfigCollection li.dragging {transform:scale(0.9);}
+.Field.CmsConfigCollection ul {transition:none;}
+
+/* NameValuePairs - (previously ParamList) */
+.Field.CmsNameValuePairs .body .w30 {margin-right:15px;}
+.Field.CmsNameValuePairs .body ul.valuesField {width:100%; height:150px; padding:0; margin:0; overflow-y:auto; overflow-x:hidden;}
+.Field.CmsNameValuePairs .body ul.valuesField li {margin:0 2px; padding:4px; display:flex;}
+.Field.CmsNameValuePairs .body ul.valuesField li span {padding:2px 11px 0 11px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; flex-shrink:0;}
+
+.Field.CmsKeyValuePairs span.flex > span {margin-right:15px;}
+.Field.CmsKeyValuePairs span.flex > span:last-child {flex:1 0 20%;}
+.Field.CmsKeyValuePairs span.flex svg.Up,
+.Field.CmsKeyValuePairs span.flex svg.Down {width:22px;}
+.Field.CmsKeyValuePairs span.flex > span.reverse {display:flex; flex-direction:row-reverse; height:56px; align-items:center; justify-content:flex-end;}
+.Field.CmsKeyValuePairs span.flex > span input[type="button"] {margin-top:18px; margin-left:0;}
+.Field.CmsKeyValuePairs span.flex > span.reverse input,
+.Field.CmsKeyValuePairs span.flex > span.reverse label {margin-top:18px;margin-left:0;margin-right:0;padding:0;}
+.Field.CmsKeyValuePairs .body ul.valuesField {width:100%; height:150px; padding:0; margin:0; overflow-y:auto; overflow-x:hidden;}
+.Field.CmsKeyValuePairs .body ul.valuesField li {margin:0 2px; padding:4px; display:flex;}
+
+.Field.CmsKeyValuePairs .body ul.valuesField li > span {padding:2px 15px 0 15px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.Field.CmsKeyValuePairs .body ul.valuesField li > span[data-property] {width:20%; margin-right:15px;}
+.Field.CmsKeyValuePairs .body ul.valuesField li > span[data-property]:last-child {flex:1;}
+.Field.CmsKeyValuePairs .body ul.valuesField li > span[data-property].w50 {width: inherit;}
+
+.Field.UserPrefs.CmsKeyValuePairs .body ul.valuesField li span {width:25%;}
+
+/* Radius Options */
+.Field.CmsKeyValuePairs .body ul.valuesField li > span[data-property][data-label]:after{margin-left:var(--dim-single-space);}
+.Field.CmsKeyValuePairs .body ul.valuesField li > span.hideText {visibility:hidden; position:relative;}
+.Field.CmsKeyValuePairs .body ul.valuesField li > span.hideText[data-label]:after {visibility:visible; position:absolute; left:11px;}
+
+/* CmsLinkCollection */
+@media (max-width:1279px) {
+    .Field.CmsLinkCollection span.inputs {display:block;}
+    .Field.CmsLinkCollection span.inputs > span.linkText,
+        .Field.CmsLinkCollection span.inputs > span.linkDestination {width:30%;display:inline-block;}
+    .Field.CmsLinkCollection span.inputs > span.browse {margin-right:0;width:calc(20% - 40px);display:inline-block;text-align:right;}
+    .Field.CmsLinkCollection span.inputs > span:last-child {display:block;margin-right:0;text-align:right;}
+}
+@media (min-width:1280px) and (max-width:1450px) {
+    .Field.CmsLinkCollection span.inputs {display:block;}
+    .Field.CmsLinkCollection span.inputs > span:not(.reverse) {display:inline-block;margin-right:10px;width:calc(25% - 12px);}
+    .Field.CmsLinkCollection span.inputs > span:last-child {margin-right:0;}
+}
+
+/* TagSubsets */
+.Field.CmsTagSubsets .body {width:100%;}
+.Field.CmsTagSubsets .body .w30 {margin-right:15px;}
+.Field.CmsTagSubsets .body .lists {margin-top:10px;}
+.Field.CmsTagSubsets .body .lists .border {height:300px; display:flex; flex-direction:column;}
+.Field.CmsTagSubsets .body .lists svg.icon {height:20px; width:20px;}
+.Field.CmsTagSubsets .body .icons {justify-content:center; margin:3px;}
+.Field.CmsTagSubsets .body ul {width:100%; padding:0; margin:0; overflow-y:auto; overflow-x:hidden;}
+.Field.CmsTagSubsets .body ul li {margin:0 2px; padding:4px; display:flex;}
+
+/* Dates */
+.Field.CmsDateTime .body .w30 + .w30,
+.Field.CmsRecurringDateTime .body .w30 + .w30 {margin-left:15px;}
+.Field.CmsRecurringDateTime .body .w30 + .w30 + .w30 {margin-top:15px;}
+
+/* CmsLinkPicker (and CmsFilePicker because it inherits) */
+.Field.CmsLinkPicker .body .w50 + .w30 {margin-left:1.5rem;}
+
+
+/* Recurring Date */
+.Field.CmsRecurringDateTime .body .flex label.caretDown {display:inline-flex; flex-direction:row; align-items:center; justify-content:center;}
+.Field.CmsRecurringDateTime .body .flex label.caretDown:after {margin-top:6px; margin-left:6px;}
+.Field.CmsRecurringDateTime .body .flex {position:relative;}
+.Field.CmsRecurringDateTime .body .flex .menu {width:100%; left:0; padding:10px; margin-bottom:20px;}
+.Field.CmsRecurringDateTime .body .flex .menu:before {left:12px;}
+.Field.CmsRecurringDateTime .body .flex .menu:after {left:14px;}
+.Field.CmsRecurringDateTime .body .flex + span {margin-left:15px;}
+
+.Field.CmsRecurringDateTime .body .menuOpener ~ label.menuButton span:last-child,
+.Field.CmsRecurringDateTime .body .menuOpener:checked ~ label.menuButton span:first-child {display:none;}
+.Field.CmsRecurringDateTime .body .menuOpener:checked ~ label.menuButton span:last-child { display:block;}
+
+label.menuButton + .menu.RecurrenceEditor input[type="number"],
+label.menuButton + .menu.RecurrenceEditor input[type="date"],
+label.menuButton + .menu.RecurrenceEditor select {width:unset; height:30px; margin-left:5px; padding:2px 0 0 5px;}
+
+label.menuButton + .menu.RecurrenceEditor > div {display:flex; flex-direction:column; margin-bottom:15px;}
+label.menuButton + .menu.RecurrenceEditor > div.recurrenceInput {flex-direction:row;}
+label.menuButton + .menu.RecurrenceEditor ul {margin:15px 0 0 25px;}
+label.menuButton + .menu.RecurrenceEditor ul.items {margin:0;}
+
+label.menuButton + .menu.RecurrenceEditor ul li {display:inline-flex; align-items:center; height:30px;}
+label.menuButton + .menu.RecurrenceEditor ul li label {padding:4px 0 0 4px; margin-right:10px;}
+label.menuButton + .menu.RecurrenceEditor ul.items li {display:flex; margin-right:0;}
+
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput > div + div {padding-left:15px;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div > .daily,
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div > .weekly,
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div > .monthly,
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div > .yearly {display:none;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div.daily > .daily,
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div.weekly > .weekly,
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div.monthly > .monthly,
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div.yearly > .yearly {display:flex;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div.weekly > .weekly {flex-direction:column;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceInput div.weekly > .weekly ul li {margin-right:5%;}
+
+label.menuButton + .menu.RecurrenceEditor .recurrenceEnd ul li {margin-right:7%;}
+
+label.menuButton + .menu.RecurrenceEditor .recurrenceExcludes .flex.inputs {margin-bottom:0; align-self:flex-start;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceExcludes .flex > span {margin-top:15px;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceExcludes .flex > span:first-child {margin-left:25px;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceExcludes .flex span svg {margin-top:0;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceExcludes ul.valuesField {width:100%; height:70px; padding:0; margin:5px 0 0 60px; overflow-y:auto; overflow-x:hidden;}
+label.menuButton + .menu.RecurrenceEditor .recurrenceExcludes ul.valuesField li {margin:0 2px; padding:4px; display:flex;}
+
+/* Fixed-height Tabs with scrolling on a single sub-element */
+
+.Field.ScrollArea {overflow:auto; max-height:100%; flex-wrap:wrap; align-items:flex-start;}
+.Field.NoScrollArea {overflow:hidden; max-height:100%; flex-wrap:wrap; align-items:flex-start;}
+
+.WkstContent .TabContent.FullHeight:not(.hide) {display:flex; flex-direction:column; height:100%;}
+.WkstContent .TabContent.FullHeight.hide {height:auto;}
+.WkstContent .TabContent.FullHeight .Field.ScrollArea:not(.tab) {width:calc(100% + 40px); padding:0 40px 0 5px;}
+.WkstContent .TabContent.FullHeight.Edit .Field.ScrollArea:not(.tab) {flex-direction:column; height:100%; padding-bottom:15px; overflow:hidden;}
+
+.WkstContent .Field.Hidden {display:none;}
+
+.WkstContent .Field.ContentFilters {padding-bottom:20px; margin-top:-8px; justify-content:space-between;}
+.WkstContent .Field.ContentFilters label {padding:0 5px; position:relative; top:8px; left:10px;}
+.WkstContent .Field.ContentFilters input[type="text"],
+.WkstContent .Field.ContentFilters input[type="date"],
+.WkstContent .Field.ContentFilters select {height:30px;}
+.WkstContent .Field.ContentFilters input[type="text"] {width:90%; padding:2px 25px 2px 15px;}
+.WkstContent .Field.ContentFilters span.includeChildren {margin-top:24px;}
+.WkstContent .Field.ContentFilters span.includeChildren label {top:unset; left:unset; line-height:24px;}
+.WkstContent .Field.ContentFilters svg.icon.filter {width:17px; height:17px; position:relative; top:2px; right:23px;}
+
+.Field.ContentActions {position:relative; padding:0 15px 20px 0;justify-content:space-between;}
+.Field.ContentActions.justifyStart {justify-content:flex-start;}
+.Field.ContentActions > span:first-child {min-width: 112px;}
+.Field.ContentActions.justifyStart > span:nth-child(2) {margin-right:2.5rem;}
+
+.Field.ContentActions > span.actions.left {justify-self:flex-end; margin-right:1.0rem;}
+.Field.ContentActions > span.actions.left + span.actions.right {justify-self:flex-start; padding-left:2.0rem;}
+
+.Field.ContentActions label.menuButton {padding-top:8px; margin-right:15px;}
+.Field.ContentActions label.menuButton:after {position:relative; top:50%; left:5px;}
+.Field.ContentActions label.menuButton + div.menu:before {left:60px;}
+.Field.ContentActions label.menuButton + div.menu:after {left:62px;}
+.Field.ContentActions label.menuButton + div.menu.mega:before {left:88px;}
+.Field.ContentActions label.menuButton + div.menu.mega:after {left:90px;}
+.Field.ContentActions label:not(.menuButton):not(.fuzzyCover) {padding:0 5px; position:relative; top:8px; left:10px; white-space:nowrap;}
+.Field.ContentActions input[type="date"] {height:30px;}
+.Field.ContentActions select {height:30px; min-width:175px;}
+.Field.ContentActions .AddWidgetAction {margin:-8px 10px 0 0;}
+.Field.ContentActions .WidgetDateRange {width:max-content; margin-top:-8px;}
+.Field.ContentActions .WidgetDateRange .date, 
+.Field.ContentFilters .WidgetDateRange .date {width:calc(50% - 10px); margin-right:10px;}
+.Field.ContentActions button.icon {padding:0; margin-left:45px;}
+.Field.ContentActions button.icon + button.icon {margin-left:15px;}
+.Field.ContentActions button.icon svg.icon {width:24px; height:24px;}
+
+
+.Field.ContentResults .Field.JobStatus .body, 
+.Field.ContentResults .Field.ExecutionHistory .body {width:100%;}
+.Field.ContentResults table {width:100%; table-layout:fixed; align-self:flex-start;}
+.Field.ContentResults div.Results,
+.Field.ContentResults div.ResultsHeader {display:table; width:100%; height:35px; margin-bottom:15px;}
+.Field.ContentResults tr {height:3.5rem;}
+.Field.ContentResults div.ResultsHeader,
+.Field.ContentResults th {position:sticky; top:0; z-index:var(--z-sticky-content);}
+
+.Field.ContentResults .Step > span {float:left; padding:6px 10px;}
+.Field.ContentResults td.versionDetails {padding:0 10px 4px;}
+.Field.ContentResults td.versionDetails div:not(.Step) > span {padding-left:10px;}
+.Field.ContentResults td.versionDetails > div {padding:6px 10px;}
+
+.WkstContent .Field.ContentResults th[data-sort-direction] span:after,
+.WkstDialog .Field.ContentResults th[data-sort-direction] span:after{position:relative; margin-left:5px;}
+.WkstContent .Field.ContentResults th[data-sort-direction="DESC"] span:after,
+.WkstDialog .Field.ContentResults th[data-sort-direction="DESC"] span:after{top:13px;}
+.WkstContent .Field.ContentResults th[data-sort-direction="ASC"] span:after,
+.WkstDialog .Field.ContentResults th[data-sort-direction="ASC"] span:after {top:-13px;}
+
+/* Used for locking the left column when scrolling horizontally. In order for this to work though, 
+	we need to switch the table-layout to auto so the width of columns won't shrink narrower than
+	their text content (allowing the horizontal scroll bar to activate). This introduces other 
+	cosmetic issues that have yet to be resolved.
+
+.WkstContent .Field.ContentResults th:first-child,
+.WkstContent .Field.ContentResults td:first-child {position:sticky; left:0; width:80px; white-space:nowrap; background-color:inherit;}
+.WkstContent .Field.ContentResults th:first-child {z-index:4;}
+.WkstContent .Field.ContentResults td:first-child {z-index:3;} 
+*/
+
+.WkstContent .Field.ContentResults th:first-child,
+.WkstContent .Field.ContentResults td:first-child {width:85px;}
+
+.WkstContent .Field.ContentResults.Report th:first-child,
+.WkstContent .Field.ContentResults.Report td:first-child {width:auto;text-align:left;}
+
+.WkstContent .Field.ContentResults.Report th {text-align:center;}
+.WkstContent .Field.ContentResults.Report td {text-align:right;}
+
+.Field.ContentResults th, 
+.Field.ContentResults td {padding:0 10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+.Field.ContentResults td span.path span.separator {margin:0 2px;}
+
+.Field.ContentResults .WkstResizeH {order:inherit; width:1px; min-width:1px; max-width:1px; padding:1px; white-space:normal;}
+.Field.ContentResults .WkstResizeH:hover {padding:2px;}
+.Field.ContentResults input[type="checkbox"] {width:16px; height:16px; margin:0;}
+.Field.ContentResults .icon {height:20px; width:100%;}
+.Field.ContentResults .icon.type {height:21px; width:26px; margin:0 10px -3px 10px;}
+.Field.ContentResults input[type="checkbox"].hide + svg.icon.type {margin-left:26px;}
+.Field.ContentResults .File .icon.type {width:21px; margin:0;}
+
+.Field.ContentResults .Folder,
+.Field.ContentResults .File {width:210px; margin:0 15px 15px 0;}
+.Field.ContentResults .Folder,
+.Field.ContentResults .File {float:left;}
+.Field.ContentResults div.ResultsHeader,
+.Field.ContentResults .Folder {height:35px; padding:7px 0 2px 10px;}
+.Field.ContentResults .File {height:150px;  padding:7px 10px;}
+
+.Field.ContentResults .Folder + .File {clear:left;}
+.Field.ContentResults div.ResultsHeader input[type="checkbox"] {margin-right:15px;}
+.Field.ContentResults div.ResultsHeader label {display:inline-block; height:100%; vertical-align:middle;}
+.Field.ContentResults .File input[type="checkbox"] {vertical-align:top;}
+.Field.ContentResults .File span.thumbnail {display:inline-block; width:calc(100% - 30px); text-align:center; min-height:100px; margin-bottom:10px;}
+.Field.ContentResults .File span.thumbnail svg,
+.Field.ContentResults .File span.thumbnail img[src$=".svg"] {width:30%; height:50px;}
+.Field.ContentResults span.name {display:inline-block; width:65%; margin:auto 0; padding-right:10px; text-align:left; float:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.Field.ContentResults .File span.name {width:100%; padding:0; text-align:center;}
+.Field.ContentResults .File svg.icon.type + span.name {width:83%; text-align:left;}
+
+.Field.ContentResults .fetch {margin:15px auto;}
+.Field.ContentResults .fetch label.menuButton {padding-top:8px;}
+.Field.ContentResults .fetch img,
+.Field.ContentResults .fetch.loading label.menuButton {display:none;}
+.Field.ContentResults .fetch.loading img {display:block;}
+
+/* SEO results view */
+.Field.ContentResults div.serp {margin:1rem 0 1.2rem 0;}
+.Field.ContentResults div.serp span:not(.extra) {display:block; word-wrap:break-word; white-space:normal;}
+.Field.ContentResults div.serp span.url {max-width:512px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.Field.ContentResults div.serp span.desc {max-width:512px; word-wrap:break-word; white-space:normal;}
+
+/* Commenting view */
+#Comments tr > th:first-child, 
+#Comments tr > td:first-child {width:115px; overflow:visible;}
+#Comments tr .icon.changed {display:none; margin-left:0;}
+#Comments tr.changed .icon.changed {display:initial;}
+
+.Field.ContentResults div.comment {margin:1rem 0 1.2rem 0;}
+.Field.ContentResults div.comment span {display:block; max-width:512px; white-space:normal; word-wrap:break-word;}
+.Field.ContentResults div.comment span.title {white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+/* Advanced Search and Replace results view */
+.WkstNotice .Field.Grouping ul.tabular {width:100%;}
+.WkstNotice .Field.Grouping ul.tabular li {justify-content:flex-start;}
+.WkstNotice .Field.Grouping ul.tabular li > span {min-width:33%;}
+#AdvReplaceResults tr > th:first-child,
+#AdvReplaceResults tr > td:first-child {width:115px;}
+#AdvReplaceResults .flex > input[type="checkbox"] {margin-right:1rem;}
+#AdvReplaceResults .replaceResult .where label {margin-right:1rem;}
+
+.WkstContent .Field.ContentResults .replaceResult .Field .body {width:90%;}
+.WkstContent .Field.ContentResults .replaceResult .Field .body > div {height:37px; padding:10px 15px 0 15px; overflow:hidden;}
+
+.WkstContent .Field.ContentResults.Dashboard {height:auto;}
+.WkstContent .Field.ContentResults.Dashboard > div {display:flex; flex-direction:row; width:100%; flex-wrap:wrap;}
+.WkstContent .Field.ContentResults.Dashboard .Widget[draggable] {display:block; height:auto; flex:0 1 auto; margin:0 15px 15px 0; transition:all 0.3s ease-in-out; min-width:300px; flex-basis:calc(50% - 15px);}
+.WkstContent .Field.ContentResults.Dashboard .Widget.dragging {transform:scale(0.9);} 
+
+/* Where Used Views */
+.WkstContent .Field.ContentResults tbody[data-expandrow] tr td span.count {display:flex;}
+.WkstContent .Field.ContentResults tbody[data-expandrow] tr td span.count svg.icon {width:30px; height:18px;}
+
+/* Fit a 3-up dashboard view on a 1280vw monitor and higher */
+@media (min-width:1280px) {
+    .WkstContent .Field.ContentResults.Dashboard .Widget[draggable] {min-width:0; flex-basis:calc(33% - 15px);}
+}
+/* Fit a 4-up dashboard view on a 1730vw monitor and higher */
+@media (min-width:1730px) {
+    .WkstContent .Field.ContentResults.Dashboard .Widget[draggable] {flex-basis:calc(25% - 15px);}
+}
+
+.WkstContent .Field.ContentResults.Dashboard .Widget table {}
+.WkstContent .Field.ContentResults.Dashboard .Widget table caption div {width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.WkstContent .Field.ContentResults.Dashboard .Widget table caption div.primary,
+.WkstContent .Field.ContentResults.DashboardWidgetResults table caption > div {height:35px; padding:9px 15px;}
+.WkstContent .Field.ContentResults.Dashboard .Widget table caption div.primary .removeWidget {float:right;}
+.WkstContent .Field.ContentResults.Dashboard .Widget table caption div.primary .removeWidget > .icon {margin: 0 -5px -3px 10px;max-height:18px;}
+.WkstContent .Field.ContentResults.Dashboard .Widget table caption div.secondary,
+.WkstContent .Field.ContentResults.DashboardWidgetResults caption div.secondary {height:28px; padding:0 15px;}
+.WkstContent .Field.ContentResults.Dashboard .Widget table thead {}
+.WkstContent .Field.ContentResults.Dashboard .Widget table tbody {}
+.WkstContent .Field.ContentResults.Dashboard .Widget tr:first-child:last-child {height:50px;}
+
+/* dashboard widget bar charts */
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart {height:200px; padding:10px 20px 10px 40px; margin-bottom:15px; position:relative;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul {clear:both; padding:0; margin:0; height:100%; width:100%; position:relative; text-align:center;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li {box-sizing:border-box; }
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.bar {position:relative; top:22px; display:inline-block; margin:0px -1px 0px 0px; width:15%; cursor:pointer; border-bottom:none;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.bar.zero {border:none;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.bar span {visibility:hidden; position:absolute; bottom:-35px; margin:0; width:110px; text-align:left;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.bar.left span {margin-left:50%;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.bar.right span {margin-left:-110px;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.bar:hover span {visibility:visible;}
+
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.axis {position:absolute; list-style-type:none; left:-15px; top:5px;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.axis.grid {width:100%; top:10px; left:0px; font-size:0;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.axis .label {height:39px;}
+.WkstContent .Field.ContentResults.Dashboard .Widget .chart ul li.grid .label.bottom {margin-top:1px;}
+
+.Field.ViewItems .ViewItem {width:100%; margin-bottom:15px;}
+.Field.ViewItems .ViewItem .header {display:flex; justify-content:space-between; height:35px; padding:9px 11px; position:relative;}
+.Field.ViewItems .ViewItem .header .title {display:flex; flex-direction:row; flex:1; width:100%; align-items:center; justify-content:space-between;}
+.Field.ViewItems .ViewItem .header .title span {overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.Field.ViewItems .ViewItem .header .title span:first-child {width:auto; max-width:calc(100% - 66px);}
+.Field.ViewItems .ViewItem .header .title span.icons {width:auto; min-width:66px;}
+
+.Field.ViewItems .ViewItem .header .title .icons:last-child {white-space:nowrap;}
+.Field.ViewItems .ViewItem .header .title .icons:last-child svg {margin-left:15px;}
+.Field.ViewItems .ViewItem .header .title .icons svg {height:18px; width:18px;}
+.Field.ViewItems .ViewItem .info {padding:6px 11px;}
+
+.DialogInner.TabContent .Field.BlockItems {flex-direction:column;}
+
+.Field.BlockItems .BlockItem:not(.deleted) ~ .WkstNotice.guide {display:none;}
+
+.Field.BlockItems .BlockItem  {width:100%; margin-bottom:15px;}
+.Field.BlockItems .BlockItem .content {display:block; padding:0 11px; width:100%; overflow:hidden;}
+.Field.BlockItems .BlockItem .content > p.previewImage {padding:5px 15px;}
+
+.Field.BlockItems .BlockItem .content .TitanBlock * {max-width:100%;}
+
+.Field.BlockItems .BlockItem[draggable='true'] {transition:transform 0.3s ease-in-out; }
+.Field.BlockItems .BlockItem.dragging {transform:scale(0.95);}
+
+.Field.BlockItems .BlockItem .header {display:flex; justify-content:space-between; height:35px; padding:9px 11px 9px 26px; position:relative;}
+.Field.BlockItems .BlockItem .header .title {display:flex; flex-direction:row; flex:1 1 70%; justify-content:space-between;}
+.Field.BlockItems .BlockItem .header .title span {margin-right:15px; width:33%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.Field.BlockItems .BlockItem .header .title span:first-child {margin-right:30px;}
+
+.Field.BlockItems .BlockItem .header .icons.caretDown:after {position:absolute; bottom:8px; left:7px;}
+.Field.BlockItems .BlockItem.collapse .header .icons.caretDown:after {bottom:10px; left:10px;}
+
+.Field.BlockItems .BlockItem .header .icons svg.changed {fill:transparent; margin:0 10px 0 0;}
+.Field.BlockItems .BlockItem.changed .header .icons svg.changed {fill:currentColor; }
+
+.Field.BlockItems .BlockItem .header .icons:last-child {white-space:nowrap; display:flex; justify-content:flex-end; min-width:180px;}
+.Field.BlockItems .BlockItem .header .icons:last-child svg {margin-left:15px;}
+.Field.BlockItems .BlockItem .header .icons svg {height:18px; width:18px;}
+.Field.BlockItems .BlockItem.deleted > div:not(.header),
+.Field.BlockItems .BlockItem.deleted .header .icons:last-child svg:not(.restore),
+.Field.BlockItems .BlockItem:not(.deleted) .header .icons .restore {display:none;}
+.Field.BlockItems .BlockItem .info {display:none; height:28px; padding:6px 11px;}
+.TabContent:not(.noInfo) .Field.BlockItems .BlockItem.info:not(.deleted) div.info {display:block;}
+.Field.BlockItems .BlockItem .info span {float:right;}
+
+.TabContent.noInfo .Field.BlockItems .BlockItem.info .info,
+.Field.BlockItems .BlockItem.collapse .info,
+.Field.BlockItems .BlockItem.collapse .content {display:none;}
+
+/* Block Copies */
+.BlockCopyActions[data-selected="Online"] .circle-icon:not(:first-child) {display:none;}
+
+.BlockCopyItems {display:block; column-count:2; column-gap:1.5rem; column-fill:balance; width:100%;}
+.tab[data-name="Online"] .BlockCopyItems {column-count:1;}
+
+@media (min-width:1280px) {
+    .BlockCopyItems {column-count:3;}
+    .tab[data-name="Online"] .BlockCopyItems {column-count:2;}
+}
+
+.BlockCopyItems .BlockCopyItem {display:inline-block; width:100%; break-inside:avoid-column; margin-bottom:1.5rem;}
+
+.BlockCopyItems .BlockCopyItem .title,
+.BlockCopyItems .BlockCopyItem .preview,
+.BlockCopyItems .BlockCopyItem .info {padding:5px 10px;}
+.BlockCopyItems .BlockCopyItem .preview {display:flex;flex-direction:column; align-items:center;}
+.BlockCopyItems .BlockCopyItem .preview img {width:100%; height:auto;}
+.BlockCopyItems .BlockCopyItem .preview svg {width:40%; height:auto;}
+.tab[data-name="Online"] .BlockCopyItems .BlockCopyItem .preview svg {width:30%;}
+
+.BlockCopyItems .BlockCopyItem .info {display:none;}
+.BlockCopyItems .BlockCopyItem .info p > span {margin-right:var(--dim-single-space);}
+.BlockCopyItems.info .BlockCopyItem .info,
+.BlockCopyItems .BlockCopyItem.selected .info {display:block;}
+
+/* Block Copy Editor */
+.DialogInner.TabContent .Field.Grouping .preview {margin-top:1.5rem; padding:1.5rem; }
+.DialogInner.TabContent .Field.Grouping .preview img,
+.DialogInner.TabContent .Field.Grouping .preview svg {}
+
+/* BlockEditors are now in a dialog */
+
+.WkstDialog .DialogEditor.Block {}
+.WkstDialog .DialogEditor.Block div[id*="_BlockEditor"] {height:100%; padding:1.5rem;}
+.BlockEditor {height:100%; align-items:flex-start;}
+
+.BlockEditor > div:first-child:last-child {display:flex; width:100%;}
+.BlockEditor > div:first-child:last-child.Field {flex-direction:column; flex-wrap:nowrap;} 
+.BlockEditor > div:first-child:last-child:not(.Field) {flex-direction:row; flex-wrap:wrap; overflow-y:auto;}
+
+.BlockEditor .w50 {display:flex; flex-direction:column; flex-wrap:nowrap; margin-right:1.5rem; overflow:hidden; align-items:stretch; flex:1 0 calc(50% - 15px);}
+@media (max-width:1279px) {
+    .BlockEditor .Field .ScrollArea {overflow-y:visible;}
+    .BlockEditor .w50 {flex:1 0 calc(100% - 1.5rem);}
+}
+.BlockEditor .w50 .Field {align-items:inherit;}
+.BlockEditor .ScrollArea {overflow-y:scroll;}
+.BlockEditor .ScrollArea .Field.CmsViewPicker .ScrollArea {overflow:visible;}
+
+.BlockEditor.Freeform,
+.BlockEditor.RawHTML {align-items:stretch;}
+
+.BlockEditor > div:first-child:last-child.Field.CmsCKEditor,
+.BlockEditor .Field.CmsCKEditor {width:100%; display:block; padding-bottom:0px;}
+.BlockEditor .Field.CmsCKEditor .body {width:100%; height:100%;}
+.BlockEditor .Field.CmsCKEditor .body .Freeform {width:100%; height:100%;}
+.BlockEditor .Field.CmsCKEditor .body .cke {margin-top:0;}
+.BlockEditor .Field.CmsCKEditor .msg {display:none;}
+
+.BlockEditor.RawHTML div.Field.CmsTextAreaControl {flex-direction:row; align-items:flex-start; padding-bottom:0;}
+.BlockEditor.RawHTML div.Field.CmsTextAreaControl .body {display:flex; flex:1 0 auto; flex-direction:column; height:100%;}
+.BlockEditor.RawHTML div.Field.CmsTextAreaControl.error .body {flex:0 1 auto;}
+.BlockEditor.RawHTML div.Field.CmsTextAreaControl .body textarea {height:100%;}
+.BlockEditor.RawHTML div.Field.CmsTextAreaControl button {display:none;}
+.BlockEditor.RawHTML div.Field.CmsTextAreaControl .hasFix button {display:inline-block;}
+
+.BlockEditor.FAQ > div:first-child:last-child {flex-wrap:nowrap; flex-direction:column; height:100%; overflow:hidden;}
+.BlockEditor.FAQ .options {display:flex; flex-direction:row; width:100%; flex-wrap:nowrap; align-items:flex-start; }
+.BlockEditor.FAQ .toolbar {margin-bottom:8px;}
+.BlockEditor.FAQ .ScrollArea {overflow-y:auto;}
+.BlockEditor.FAQ .Field.QuestionList {display:block;}
+.BlockEditor.FAQ .Field.QuestionList .faqItem {padding:1.5rem; margin-right:1.5rem;}
+.BlockEditor.FAQ .Field.QuestionList .faqItem:not(:last-child),
+.BlockEditor.FAQ .Field.QuestionList .faqItem > .faqQuestion {margin-bottom:1.5rem;}
+.BlockEditor.FAQ .Field.QuestionList .faqItem > .faqQuestion > .icon,
+.BlockEditor.FAQ .Field.QuestionList .faqItem > .faqAnswer > .icon {margin-right:1rem; align-self:flex-start; padding:0.5rem 1rem; min-width:35px;}
+@media (max-width:1279px) {
+    .BlockEditor.FAQ > div:first-child:last-child {overflow:visible;}
+    .BlockEditor.FAQ .options {flex-wrap:wrap;}
+    .BlockEditor.FAQ .ScrollArea {overflow:visible;}
+}
+
+.BlockEditor.DataEditor .DataEditorPreview,
+.BlockEditor.FormBlock .FreeformContentPreview {padding:10px 15px; height:200px; overflow-y:scroll; border-width:1px; margin-bottom:1rem;}
+.BlockEditor.DataEditor .fullWidth > .DataEditorPreview,
+.BlockEditor.FormBlock .fullWidth > .FreeformContentPreview {margin-left:26px; margin-bottom:15px; width:70%;}
+.BlockEditor.DataList .Field.SortOrder .body ul {max-height:250px; overflow-y:auto; margin-top:8px;}
+
+.BlockEditor.FormBlock .selectFormFields, 
+.BlockEditor.FormBlock #GetFormResults {margin-top:15px;margin-left:26px;}
+.BlockEditor.FormBlock .ReportStartDate .flex.w30,
+.BlockEditor.FormBlock .ReportEndDate .flex.w30 {width:70%;}
+
+.BlockEditor.SiteMap .CmsViewPicker > .body {height:calc(100% - 115px);}
+
+.WkstContent .TabContent .CmsCheckableItems.PropagateChanges {align-items:flex-start;}
+.WkstContent .TabContent .CmsCheckableItems.PropagateChanges .body {flex-basis:100%;}
+.WkstContent .TabContent .CmsCheckableItems.PropagateChanges .multi,
+.WkstContent .TabContent .CmsCheckableItems.PropagateChanges .msg {display:none;}
+
+.WkstContent .TabContent .WorkflowType .body {width:80%;}
+@media(max-width:1279px) {
+    .WkstContent .TabContent .WorkflowType .body {width:calc(100% - 26px);}
+}
+.WkstContent .TabContent .WorkflowType .body ul { display:flex; flex-direction:row; align-items:center; flex-wrap:wrap;}
+.WkstContent .TabContent .WorkflowType .body ul li {flex-direction:column; align-items:center;  height:auto; min-width:100px;}
+.WkstContent .TabContent .WorkflowType .body ul li svg {height:50px; width:50px;}
+.WkstContent .TabContent .WorkflowType .body ul li input {margin: 3px 0px;}
+.WkstContent .TabContent .WorkflowType .body ul li label {left:0px; width:150px;}
+
+.WkstContent .TabContent .AuthorUserCN .body {flex-basis: 20%; min-width:300px;}
+.WkstContent .TabContent .AuthorUserCN .msg {top:-25px;} 
+
+.WkstContent .TabContent dl {margin-left:15px;}
+.WkstContent .TabContent dl dd {margin:5px 0 15px 15px;}
+
+.WkstContent .TabContent .LinkedKeywords span.keyword {border-width:1px;border-radius:5px;padding:5px 10px;}
+.WkstContent .TabContent .LinkedKeywords span.keyword .edit {padding-right:10px;}
+.WkstContent .TabContent .LinkedKeywords span.keyword .delete > .icon {max-width:26px;height:26px;}
+
+/* Snippets Tab */
+
+.WkstContent .TabContent details {margin:15px 15px 15px 0;}
+.WkstContent .TabContent details summary {height:35px; padding:9px 11px; white-space:nowrap;}
+
+/* Titan Admin */
+.WkstContent .AdminItem {width:100%; flex-direction:column; align-items:flex-start; flex:0 1;}
+.WkstContent .AdminOne {width:100%; flex-direction:column; align-items:flex-start; flex:1 0;}
+.WkstContent .AdminItem .header,
+.WkstContent .AdminOne .header,
+.WkstContent .AdminItem .info,
+.WkstContent .AdminOne .info,
+.WkstContent .AdminItem .content,
+.WkstContent .AdminOne .content {width:100%;}
+
+/* Titan Admin AdminItem - the list of collapsable panels */
+.WkstContent .AdminItem {margin-bottom:1.5rem; padding:0;}
+.WkstContent .Field.AdminItem {padding-bottom:0;}
+.WkstContent .wkstButton + .AdminItem,
+.WkstContent .FieldHeading + .AdminItem,
+.WkstContent .AdminItem .FieldHeading:first-child,
+.WkstContent .AdminItem:first-child {margin-top:15px;}
+.WkstContent .AdminItem button.wkstButton:last-child:not(:first-child) {margin-bottom:20px;}
+.WkstContent .AdminItem .header {display:flex; justify-content:space-between; height:35px; padding:9px 11px 9px 26px; position:relative;}
+.WkstContent .AdminItem .header .title {display:flex; flex-direction:row; flex:1 0 50%; overflow:hidden;}
+.WkstContent .AdminItem .header .title span {margin-right:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+@media (max-width:1279px) {
+    .WkstContent .AdminItem .header .title span:not(:first-child) {display:none;}
+}
+.WkstContent .AdminItem .header .title span:first-child {margin-right:30px;}
+.WkstContent .AdminItem > .header .icons .changed,
+.WkstContent .AdminItem > .header .icons .error {display:none;}
+.WkstContent .AdminItem.changed > .header .icons .changed,
+.WkstContent .AdminItem.error > .header .icons .error {display:block; margin:0 15px 0 0;}
+.WkstContent .AdminItem .content {display:block; padding:0 11px; overflow:hidden;}
+.WkstContent .AdminItem.collapse .content {display:none;}
+
+.WkstContent .AdminItem > .header .icons.caretDown:after {position:absolute; bottom:8px; left:7px;}
+.WkstContent .AdminItem.collapse > .header .icons.caretDown:after {bottom:10px; left:10px;}
+.WkstContent .AdminItem > .header .icons:last-child {white-space:nowrap;}
+.WkstContent .AdminItem > .header .icons:last-child svg {margin-left:15px;}
+.WkstContent .AdminItem > .header .icons svg {height:18px; width:18px;}
+
+.WkstContent .AdminItem > .header + .info {display:none; max-height:6.3rem; padding:0.5rem 1.5rem; overflow:auto;}
+.WkstContent .AdminItem.collapse > .header + .info,
+.WkstContent .AdminItem.showInfo:not(.collapse) > .header + .info {display:block;}
+
+.WkstContent .TagAdminItem .flex:not(.hide) {display:flex;}
+.WkstContent .TagAdminItem .flex > div{flex-basis:75%;}
+.WkstContent .TagAdminItem .flex > input {margin: auto 0px;}
+
+
+
+/* Titan Admin AdminOne - a single editable item */
+.WkstContent .AdminOne > .header .restore {display:none;}
+
+/* Site Snippets Admin */
+.SnippetPreview {margin-left:15px;}
+.SnippetPreview .body {flex:1 0 100%;}
+.SnippetPreview .body > div {margin-top:15px; font-size:medium;}
+.SnippetPreview .body pre {margin:0;}
+.SnippetPreview .body pre details {margin:5px 0;}
+.SnippetPreview .body pre details summary {height:auto; padding:0;}
+.SnippetPreview .body pre span {display:flex; padding:4px;}
+.SnippetPreview .body pre span:not(.block) {display:inline-flex; overflow:hidden; text-overflow:ellipsis;}
+.SnippetPreview .body pre span.block {display:block; overflow-x:auto;}
+.SnippetPreview .body pre span:empty:after {content:"(empty)";}
+.SnippetPreview .body pre.l0 {margin-left:0rem;}
+.SnippetPreview .body pre.l1 {margin-left:2rem;}
+.SnippetPreview .body pre.l2 {margin-left:4rem;}
+
+@media (max-width:1279px) {
+    #Snippets_content .flexStart,
+    .Field[data-name="Snippets"] .AdminOne .flexStart {flex-direction:column;}
+    #Snippets_content .flexStart .w60,
+    .Field[data-name="Snippets"] .AdminOne .flexStart .w60,
+    #Snippets_content .flexStart .w40,
+    .Field[data-name="Snippets"] .AdminOne .flexStart .w40 {width:100%;}
+}
+
+/* Tab Nav */
+
+.TabNav {display:flex; flex-direction:row; height:100%;}
+.TabNav .nav {position:absolute; width:220px; height:100%; padding-top:10px;}
+.DialogEditor .TabNav {min-height:200px;}
+.DialogEditor .TabNav .nav {height:calc(100% - 60px); overflow-y:auto;}
+
+.TabNav nav {position:relative; width:100%;}
+.TabNav nav ul {margin:0; padding:0;}
+.TabNav nav ul li {list-style:none;}
+.TabNav nav ul li > span {display:flex; height:31px; margin:0; padding:5px 15px 0 35px;}
+.TabNav nav ul li > span > span {flex:1 0 auto; flex-wrap:nowrap;}
+.TabNav nav ul li > span > span.icons {flex:0 1 auto;}
+.TabNav nav ul li > span > span.icons svg {width:18px; height:18px;}
+.TabNav nav ul li > span > span.icons .changed,
+.TabNav nav ul li > span > span.icons .error {display:none;}
+.TabNav nav ul li.changed > span > span.icons .changed,
+.TabNav nav ul li.error > span > span.icons .error {display:block;}
+.TabNav nav ul li.largeIcon > span {height:55px; width:100%;padding:5px 15px 0 15px;}
+.TabNav nav ul li.largeIcon svg {height:50px; width:50px;}
+.TabNav nav ul li.largeIcon > span span {align-self: center;}
+
+.TabNav > .Field.ContentActions {flex-direction:column; align-items:flex-start; position:absolute; margin-left:230px; width:calc(80% + 40px); padding:10px 40px 15px 20px;}
+.TabNav > .Field.ContentActions ~ .tab {margin-top:60px;}
+
+.TabNav > .Field.ScrollArea {width:calc(80% + 40px); padding:0 40px 15px 0px; overflow:hidden auto;}
+.DialogEditor .TabNav > .Field.ScrollArea {flex-wrap:nowrap;}
+.TabNav:first-child > .Field.ScrollArea {padding-top:15px;}
+
+.TabNav .tab {display:none; margin-left:calc(230px + 2rem); flex-direction:column; flex:1 1 auto;}
+.TabNav .tab.selected {display:flex;}
+.TabNav .tab .Field {width:100%;}
+.TabNav .tab li.inline .Field {width:auto;}
+.TabNav .tab .Field .body {width:80%;}
+.TabNav .tab .Field.CmsCKEditor .body {width:100%;}
+.TabNav .tab .Field.CmsCheckableItems.ActiveState {display:flex; justify-content:flex-end; width:auto;}
+.TabNav .tab .Field.CmsCheckableItems.ActiveState .multi {display:none;}
+
+@media(max-width:1279px) {
+    .TabNav .tab .Field .body {width:calc(100% - 26px);}
+}
+
+/* Smart Search */
+.TabContent#SmartSearchResults_content .Field.ContentFilters {padding-right:15px;}
+.Field.ContentResults#ManagedResultEditor .ResultsHeader > button {max-width: 75px;margin:10px 0;}
+.Field.ContentResults#ManagedResultEditor .ResultsHeader > .goBack {padding:10px 15px;}
+.Field.ContentResults#ManagedResultEditor span.ss_term {display:inline;}
+.Field.ContentResults .Results tr.keywordResult td > span.viewDetails {display:inline;}
+.Field.ContentResults .Results tr.keywordResult td > span.viewDetails > .icon {max-width:30px;}
+.Field.ContentResults .Results#KeywordResults tr.StyleSyncer {height:0;}
+.Field.ContentResults#ManagedResultEditor tbody > tr > td {padding-top:1rem;vertical-align:top;}
+.Field.ContentResults .Results#KeywordResults tr > td.openCloseResult .open {display:none;}
+.Field.ContentResults .Results#KeywordResults tr.selected.featured > td.openCloseResult .open {display:block;}
+.Field.ContentResults .Results#KeywordResults td.SearchResultTypes > span {margin:0 4px 0 0;border-width:1px;border-radius:3px;padding:3px 5px;}
+.Field.ContentResults .Results#KeywordResults td.SearchResultTypes > span:last-child {margin:0;}
+.Field.ContentResults .Results#KeywordResults tr > td > .serp.card {display:none;}
+.Field.ContentResults .Results#KeywordResults tr.card > td > .serp.card {display:block;}
+.Field.ContentResults .Results#KeywordResults .resultEdit {white-space:normal;}
+
+.Field.ContentResults#ManagedResultEditor .keyword {margin:0 10px 10px 0;}
+.Field.ContentResults#ManagedResultEditor .keyword .edit {padding:2px 10px 2px 5px;}
+.Field.ContentResults#ManagedResultEditor .keyword .delete .icon.type {margin:2px;vertical-align:middle;}
+
+/* Dialogs */
+
+.WkstDialog {position:absolute; width:100%; height:100%; display:none;}
+.WkstDialog.fuzzyCover {display:block;}
+
+.WkstDialog svg.icon {width:26px; height:26px;}
+.WkstDialog .circle-icon svg.icon {width:100%; height:100%;}
+
+.WkstDialog .DialogEditor {min-width:500px; height:90%; margin:2% auto; display:flex; flex-direction:column; z-index:var(--z-fuzzy-content); position:absolute; left:0; right:0;}
+.WkstDialog .DialogEditor:not(:last-child):after,
+.WkstDialog[data-state="loading"] .DialogEditor:after {position:absolute; top:0; left:0; width:100%; height:100%;}
+.WkstDialog .DialogEditor:last-child {z-index:var(--z-last-dialog);}
+.WkstDialog .DialogEditor + .DialogEditor {margin:3% auto;}
+.WkstDialog .DialogEditor + .DialogEditor + .DialogEditor {margin:4% auto;}
+
+.WkstDialog .DialogEditor.short {height:unset;}
+.WkstDialog .DialogEditor.small {width:25%; height:unset; max-height:90%;}
+.WkstDialog .DialogEditor.medium {width:50%;}
+.WkstDialog .DialogEditor.large {width:65%;}
+.WkstDialog .DialogEditor.xlarge {width:80%;}
+.WkstDialog .DialogEditor.full {width:96%;}
+
+@media (max-width:1279px) {
+    .WkstDialog .DialogEditor.small,
+    .WkstDialog .DialogEditor.medium,
+    .WkstDialog .DialogEditor.large {width:70%;}
+}
+
+.WkstDialog .DialogEditor .editor {display:flex; flex-direction:column; flex:1 1 auto; overflow:auto;}
+.WkstDialog .DialogEditor .editor.hide {display:none;}
+.WkstDialog .DialogEditor.full .editor:not(.titlebar) {flex-wrap:nowrap; flex:1; height:90%; overflow:hidden;}
+
+.WkstDialog[data-state="submitting"] .DialogEditor:last-child {display:none;}
+.WkstDialog[data-state="waiting"] .loading,
+.WkstDialog[data-state="submitting"] .loading {display:block;}
+
+.WkstDialog .DialogEditor .bar {display:flex; padding:0 20px; flex-direction:row; align-items:center; flex:0 0 auto;}
+.WkstDialog .DialogEditor .bar h2 {margin:15px 0; white-space:nowrap;}
+
+.WkstDialog .DialogEditor .bar .buttons {text-align:right; white-space:nowrap;}
+.WkstDialog .DialogEditor .bar .buttons button:not(:last-child) {margin-right:0.5rem;}
+.WkstDialog .DialogEditor .bar.footer {padding:5px 20px;}
+.WkstDialog .DialogEditor .bar.footer span:empty:before {content:"\200b";}
+
+.WkstDialog .DialogEditor .DialogInner {display:flex; flex-direction:column; align-items:stretch; padding:1.5rem; flex:1; height:calc(100% - 3.5rem);}
+.WkstDialog .DialogEditor .DialogInner .FieldHeading {margin-top:0;}
+.WkstDialog .DialogEditor .DialogInner .Field.CmsNavPicker {display:block;}
+
+.DialogEditor:not(.Block) .Field > .body {width:100%; flex-basis:calc(100% - 52px);}
+
+.DialogEditor:not(.Block) .Field > .msg .bubble {position:relative; top:8px; margin:0; width:100%; max-width:unset; display:none; white-space:normal; z-index:var(--z-sticky-content);}
+.DialogEditor:not(.Block) .Field > .body.hasLabel + .msg > .bubble {top:8px;}
+
+.DialogEditor:not(.Block) .Field > .msg .bubble:after {right:unset; bottom:100%;}
+.DialogEditor:not(.Block) .Field.error {flex-direction:column; padding:0 26px 15px 26px;}
+.DialogEditor:not(.Block) .cmscontrols .Field.error {padding-left:0;}
+.DialogEditor:not(.Block) .Field.error > .msg .bubble.error {display:flex;}
+.DialogEditor:not(.Block) .Field.error td.msg {overflow:visible;}
+.DialogEditor:not(.Block) .Field.changed > .msg .bubble.changed {display:none;}
+
+.DialogEditor:not(.Block) .Field.CmsCheckableItems ul li {min-width:auto;}
+.DialogEditor:not(.Block) .Field.CmsCheckableItems ul li.flex {display:flex;}
+
+.DialogEditor:not(.Block) .Field.Grouping ul.items li .Field {flex-direction:column; margin-left:1rem;}
+
+.DialogEditor.full .Field.CmsTextAreaControl.FileContents,
+.DialogEditor.full .Field.CmsTextAreaControl.FileContents .body,
+.DialogEditor.full .Field.CmsTextAreaControl.FileContents .body textarea {height:100%; width:99%;}
+.DialogEditor.full .Field.CmsTextAreaControl.FileContents .body textarea {overflow:auto; white-space:nowrap;}
+
+.DialogEditor .Field.CmsCustomParam > .multi {display:none;}
+.DialogEditor .Field.CmsCustomParam > .body,
+.DialogEditor .Field.CmsCustomParam > .body > .Field > .body {width:100%; flex-basis:100%;}
+
+.DialogEditor .Field.ScrollArea.ContentResults:not(.upload) {width:calc(100% - 52px); align-self:center; padding:0;}
+
+.DialogEditor .Field.ScrollArea.ContentResults.ScrollH {overflow-x:scroll; min-height:150px;}
+.DialogEditor .Field.ScrollArea.ContentResults.ScrollH table {table-layout:auto;}
+/*
+.DialogEditor .Field.ContentResults div.ResultsHeader,
+.DialogEditor .Field.ContentResults th {z-index:unset;} 
+*/
+
+.DialogEditor .footer label {display:flex; align-items: center;}
+.DialogEditor .footer label span {margin-left:15px;}
+
+.DialogEditor:not(.upload) .upload, 
+.DialogEditor.upload .wkstButton:not(.upload), 
+.DialogEditor.upload .editor,
+.DialogEditor.upload .footer:not(.upload),
+.DialogEditor.upload:not(.failed) .failed,
+.DialogEditor.upload.failed .wkstButton.upload:not(.failed),
+.DialogEditor.upload:not(.ok) .ok,
+.DialogEditor.upload.ok .wkstButton.upload:not(.ok) {display:none;}
+
+/* File Create Dialog */
+.DialogEditor.FileCreate.upload {height:390px;}
+.DialogEditor.FileCreate.upload .Field.ScrollArea {overflow:auto; width:auto; height:100%; flex-wrap:wrap; align-items:flex-start; margin-bottom:1px; padding-bottom:0px;}
+.DialogEditor.FileCreate.upload table.Results {margin:0;}
+.DialogEditor.FileCreate.upload table.Results th.Date,
+.DialogEditor.FileCreate.upload table.Results th.Size {min-width:20%;}
+.DialogEditor.FileCreate.upload table.Results th.Icons {width:50px;}
+
+/* Content Import Dialog */
+.DialogEditor.ContentImport .editor {flex:1;}
+.DialogEditor.ContentImport.upload .editor {display:flex;}  /* needed to override default behavior (above) */
+.DialogEditor.ContentImport:not(.upload) .upload,
+.DialogEditor.ContentImport:not(.uploading) .uploading,
+.DialogEditor.ContentImport.upload .wkstButton:not(.upload),
+.DialogEditor.ContentImport.uploading .wkstButton:not(.uploading) {display:none;}
+
+.DialogEditor.ContentImport .Field.Grouping .msg {display:none;}
+.DialogEditor.ContentImport .Field.Grouping .flexStart {padding-bottom:15px;} 
+
+.DialogEditor.ContentImport .Field.ContentResults table {display:none;}
+.DialogEditor.ContentImport .Field.ContentResults.Results table.Results,
+.DialogEditor.ContentImport .Field.ContentResults.Report table.Report,
+.DialogEditor.ContentImport .Field.ContentResults.Errors table.Errors {display:table;}
+
+.DialogEditor.ContentImport .Field.ContentResults + ul.ResultsTabs {list-style:none; padding:0; margin:0 auto; margin-bottom:20px; width:calc(100% - 52px); position:relative; top:-1px;}
+.DialogEditor.ContentImport .Field.ContentResults + ul.ResultsTabs li.tab {padding:10px; margin-left:5px;}
+.DialogEditor.ContentImport .Field.ContentResults + ul.ResultsTabs li.tab:first-child {margin-left:20px;}
+.DialogEditor.ContentImport .Field.ContentResults + ul.ResultsTabs li:not(.tab) {display:none;}
+.DialogEditor.ContentImport .Field.ContentResults.Results + ul.ResultsTabs li.Results {display:flex;}
+
+.DialogEditor.ContentImport:not(.uploading) .Field.ScrollArea.ContentResults tbody .status {display:none;}
+.DialogEditor.ContentImport.status .Field.ScrollArea.ContentResults tbody .status {display:table-cell;}
+
+.DialogEditor.ContentImport .progress {align-items:flex-start; align-self:center; width:calc(100% - 52px); margin-bottom:30px; flex-direction:column;}
+.DialogEditor.ContentImport .progress span {text-align:right; width:100%;}
+.DialogEditor.ContentImport .progress progress {height:20px; width:100%;}
+
+.DialogEditor.ContentImport span.flex span {margin-right:var(--dim-single-space);}
+
+/* Default View Selection */
+.DialogInner .ViewOptions label {display:flex; flex-direction:row; align-items:flex-start; padding:15px;}
+.DialogInner .ViewOptions input[type="radio"] {margin-right:15px;}
+.DialogInner .ViewOptions {margin-top:15px;}
+
+/* Blockettes */
+.DialogEditor.BlocketteEditor .Field.CmsNavPicker .WkstTree {max-height:350px;overflow-y: scroll;}
+.DialogEditor.BlocketteEditor .Field.CmsViewPicker {height:auto;}
+.DialogEditor.BlocketteEditor .Field.CmsSuggestListBox .border {max-height:200px;}
+.DialogEditor.BlocketteEditor .Field.CmsCheckableItems.SortOrder ul.items {height:250px;overflow-y:auto;}
+
+.DialogEditor.FAQItem .Field.CmsCKEditor .body .cke .cke_contents {min-height:300px;}
+.DialogEditor.FormContentEditor .Field.CmsCKEditor .body .cke .cke_contents {min-height:300px;}
+
+.DialogEditor #PriorityList div.item {padding:5px;}
+.DialogEditor #PriorityList div.left {margin-right:15px;}
+.DialogEditor #PriorityList div.left input[type="text"] {width:75px;height:33px;}
+
+.DialogEditor.CKFormsDialog .TabNav .tab .Field {align-items:flex-start;}
+.DialogEditor.CKFormsDialog .TabNav .tab .Field  > .body {width:100%;}
+.DialogEditor.CKFormsDialog button.testValidation {margin-bottom:15px;}
+
+.WkstDialog .DialogEditor.AdvancedSearch.full .editor {flex:1;overflow-y:scroll;}
+.WkstDialog .DialogEditor.AdvancedSearch .editor .CmsNavPicker .WkstTree {max-height:400px;overflow:hidden scroll;}
+.WkstDialog .DialogEditor.AdvancedSearch .editor .WkstNotice {margin: 0 26px 15px 26px;width: calc(100% - 52px);}
+.WkstDialog .DialogEditor.AdvancedSearch .editor .WkstNotice.info {max-height:400px;overflow-y:scroll;}
+.WkstDialog .DialogEditor.AdvancedSearch .WorkflowType .body {flex-basis:20%;min-width:300px;}
+
+.DialogEditor.FormContentEditor .editor .Field.CmsCKEditor {height:100%; align-items:stretch; margin-bottom:15px;}
+
+/* Content Explorer */
+.WkstDialog .DialogEditor.ContentExplorer .DialogInner {padding:0 1rem 1rem 1rem; flex-direction:row; height:calc(100% - 4.7rem); /* 4.7rem = bottom-padding + .view height */ overflow:hidden;}
+.WkstDialog .DialogEditor.ContentExplorer .DialogInner .FieldHeading {flex:0 0 auto; margin-top:1.0rem; overflow:hidden;}
+
+.ContentExplorer .Nav {order:1; width:25%; min-width:40px; padding-right:1.0rem;}
+.ContentExplorer.FoldersOnly .Nav {width:100%; padding-right:0;}
+.ContentExplorer .Nav .Field.CmsNavPicker > .body {height:100%;}
+.ContentExplorer .Nav .Field.CmsNavPicker > .body > .WkstTree {max-height:unset;}
+
+.ContentExplorer .Main {order:3; width:50%; padding-right:1.0rem; display:flex; flex-direction:column;}
+.ContentExplorer .Main .view {display:flex; flex:1 0 auto; width:100%; height:37px; margin:1.0rem 0; justify-content:space-between;}
+.ContentExplorer .Main .view span {display:flex; align-items:center;}
+.ContentExplorer .Main .view span.count {margin-right:0.5rem;}
+.ContentExplorer .Main .view span.icons.hide {display:none;}
+.ContentExplorer .Main .view span.icons > span {margin-left:0.5rem;}
+.ContentExplorer .Main .view svg.icon {width:21px; height:21px;}
+
+.ContentExplorer .Main section.Results {overflow:hidden auto; height:100%;}
+.ContentExplorer .Main table.Results {margin-right:0.1rem;}
+.ContentExplorer .Main table.Results th {z-index:unset;}
+.ContentExplorer .Main table.Results th:first-child,
+.ContentExplorer .Main table.Results td:first-child {padding:0; width:40px; text-align:right;}
+.ContentExplorer .Main table.Results td:first-child svg {margin:0 0 -3px 0;}
+
+.ContentExplorer .Main div.ResultsHeader {padding:0;}
+.ContentExplorer .Main div.ResultsHeader,
+.ContentExplorer .Main div.ResultsHeader th {z-index:unset;}
+.ContentExplorer .Main div.ResultsHeader th:first-child {padding:0; width:40px; text-align:right;}
+.ContentExplorer .Main div.Results div.resultItem {display:inline-flex; flex-direction:column; flex-wrap:wrap; align-items:center; justify-content:flex-start; width:130px; min-height:130px; margin:0 1.0rem 1.0rem 1.0rem; padding:0.5rem;}
+.ContentExplorer .Main div.Results div.resultItem span {width:100%; white-space:normal; overflow-wrap:break-word;} 
+.ContentExplorer .Main div.Results div.resultItem span.thumb {width:90px; height:90px; margin:0 auto;}
+.ContentExplorer .Main div.Results div.resultItem span.thumb .icon {height:calc(100% - 1.0rem);}
+
+.ContentExplorer .Details {order:5; width:25%; display:flex; flex-direction:column; flex:1 0 auto;}
+.ContentExplorer .Details .Field.Grouping .multi {display:none;}
+.ContentExplorer .Details .Field.Grouping .body {flex-basis:auto;}
+.ContentExplorer .Details .thumbnail {max-height:150px;}
+
+.ContentExplorer .Details ul.tabular {padding:0 1rem 0 0;}
+.ContentExplorer .Details ul.tabular li:not([title]) {display:none;}
+.ContentExplorer .Details ul.tabular li span {width:fit-content; white-space:nowrap;}
+.ContentExplorer .Details ul.tabular li[title]:after {white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+.LinkEditor .LinkTypeEditors > div {display:none;}
+.LinkEditor .LinkTypeEditors.InternalLink > .InternalLink,
+.LinkEditor .LinkTypeEditors.ExternalLink > .ExternalLink,
+.LinkEditor .LinkTypeEditors.Recent > .Recent,
+.LinkEditor .LinkTypeEditors.MailToLink > .MailToLink,
+.LinkEditor .LinkTypeEditors.TelLink > .TelLink, 
+.LinkEditor .LinkTypeEditors.AnchorLink > .AnchorLink,
+.LinkEditor .LinkTypeEditors.SearchResult > .SearchResult {display:block;}
+
+.LinkEditor .ScrollArea {overflow-y:auto; max-height:300px; margin-bottom:1.5rem;}
+
+.LinkEditor .LinkTypeEditors .Recent.ScrollArea,
+.LinkEditor .LinkTypeEditors .SearchResults .ManagedResults > .body {padding:0 1.5rem;}
+
+.LinkEditor .LinkTypeEditors .ResultsHeader {margin-top:1.5rem;}
+.LinkEditor .LinkTypeEditors .ResultsHeader,
+.LinkEditor .LinkTypeEditors div.resultItem {display:flex; align-items:center; min-height:35px; padding:1rem;}
+.LinkEditor .LinkTypeEditors div.resultItem:last-child {margin-bottom:1.5rem;}
+
+.LinkEditor .LinkTypeEditors span.serp {margin-left:1.0rem; display:flex; flex:1 0 100%; flex-direction:column; align-items:flex-start;}

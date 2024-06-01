@@ -1,0 +1,5 @@
+"id","plan_name","plan_slug","plan_description","sku","period","plan_properties","is_free","plan_price","plan_tag","order"
+"1","Free","free","","0","","Get daily alerts of new grants based on your preferences. No credit card required.","1","0.00","","1"
+"2","Premium Catalog Subscription","premium-catalog","Weekly","13","P7D","","0","9.99","","2"
+"3","Elite Catalog Subscription","elite-catalog","Monthly","14","P1M","","0","29.99","","3"
+"4","Enterprise Catalog Subscription","enterprise-catalog","Yearly","15","P1Y","","0","199.99","","4"
